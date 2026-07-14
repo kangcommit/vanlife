@@ -1,11 +1,11 @@
 import React from "react";
-import { FaArrowLeftLong } from "react-icons/fa6";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
+import BackButton from "../../components/BackButton";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import type { Van } from "../../types";
 
 export default function VanDetail() {
 	const params = useParams();
-	const navigate = useNavigate();
 
 	const [van, setVan] = React.useState<Van | null>(null);
 	const [loading, setLoading] = React.useState(true);
@@ -20,24 +20,13 @@ export default function VanDetail() {
 	}, [params.id]);
 
 	if (loading) {
-		return (
-			<section className="mx-auto flex min-h-[60vh] max-w-7xl items-center justify-center px-6">
-				<div className="h-10 w-10 animate-spin rounded-full border-4 border-[#FF8C38] border-t-transparent" />
-			</section>
-		);
+		return <LoadingSpinner />;
 	}
 
 	if (van) {
 		return (
 			<section className="mx-auto max-w-7xl px-6 pt-10 pb-21">
-				<button
-					type="button"
-					onClick={() => navigate(-1)}
-					className="mb-10 inline-flex items-center gap-3 font-medium text-[#201F1D] hover:underline"
-				>
-					<FaArrowLeftLong className="text-[#858585]" />
-					Back to all vans
-				</button>
+				<BackButton className="mb-10" />
 
 				<div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-16">
 					<div className="lg:w-1/2">
@@ -63,9 +52,9 @@ export default function VanDetail() {
 
 						<h1 className="mb-3 font-bold text-3xl md:text-4xl">{van.name}</h1>
 
-						<p className="mb-6">
-							<span className="font-semibold text-2xl">${van.price}</span>
-							<span className="text-[#4D4D4D]">/day</span>
+						<p className="mb-6 text-[#161616]">
+							<span className="font-bold text-2xl">${van.price}</span>
+							<span className="font-medium text-xl">/day</span>
 						</p>
 
 						<p className="mb-8 text-[#161616] leading-7">{van.description}</p>
