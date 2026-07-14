@@ -1,4 +1,16 @@
-import { createServer, Model } from "miragejs";
+import { createServer, Model, type Registry } from "miragejs";
+import type { ModelDefinition } from "miragejs/-types";
+import type Schema from "miragejs/orm/schema";
+import type { Van } from "./types";
+
+type AppRegistry = Registry<
+	{
+		vans: ModelDefinition<Van>;
+	},
+	{}
+>;
+
+type AppSchema = Schema<AppRegistry>;
 
 createServer({
 	models: {
@@ -15,6 +27,7 @@ createServer({
 			imageUrl:
 				"https://assets.scrimba.com/advanced-react/react-router/modest-explorer.png",
 			type: "simple",
+			hostId: "123",
 		});
 		server.create("van", {
 			id: "2",
@@ -25,6 +38,7 @@ createServer({
 			imageUrl:
 				"https://assets.scrimba.com/advanced-react/react-router/beach-bum.png",
 			type: "rugged",
+			hostId: "123",
 		});
 		server.create("van", {
 			id: "3",
@@ -35,6 +49,7 @@ createServer({
 			imageUrl:
 				"https://assets.scrimba.com/advanced-react/react-router/reliable-red.png",
 			type: "luxury",
+			hostId: "456",
 		});
 		server.create("van", {
 			id: "4",
@@ -45,6 +60,7 @@ createServer({
 			imageUrl:
 				"https://assets.scrimba.com/advanced-react/react-router/dreamfinder.png",
 			type: "simple",
+			hostId: "789",
 		});
 		server.create("van", {
 			id: "5",
@@ -55,6 +71,7 @@ createServer({
 			imageUrl:
 				"https://assets.scrimba.com/advanced-react/react-router/the-cruiser.png",
 			type: "luxury",
+			hostId: "789",
 		});
 		server.create("van", {
 			id: "6",
@@ -65,18 +82,31 @@ createServer({
 			imageUrl:
 				"https://assets.scrimba.com/advanced-react/react-router/green-wonder.png",
 			type: "rugged",
+			hostId: "123",
 		});
 	},
 
 	routes() {
 		this.namespace = "api";
+		this.logging = false;
 
-		this.get("/vans", (schema: any) => {
-			return schema.vans.all();
+		this.get("/vans", (schema: AppSchema) => {
+			return schema.all("vans");
 		});
 
-		this.get("/vans/:id", (schema: any, request) => {
-			return schema.vans.find(request.params.id);
+		this.get("/vans/:id", (schema: AppSchema, request) => {
+			return schema.find("vans", request.params.id);
+		});
+
+		this.get("/host/vans", (schema: AppSchema) => {
+			return schema.where("vans", { hostId: "123" });
+		});
+
+		this.get("/host/vans/:id", (schema: AppSchema, request) => {
+			return schema.findBy("vans", {
+				id: request.params.id,
+				hostId: "123",
+			});
 		});
 	},
 });
