@@ -11,11 +11,21 @@ const nav = tv({
 	},
 });
 
+const navLink = tv({
+	base: "transition-colors hover:text-[#161616] hover:underline",
+	variants: {
+		active: {
+			true: "font-bold text-[#161616] underline",
+		},
+	},
+});
+
 type Link = {
 	to: string;
 	label: string;
 	end?: boolean;
 };
+
 type NavProps = {
 	links: Link[];
 	variant?: "primary" | "secondary";
@@ -29,11 +39,7 @@ export function Nav({ links, variant = "primary" }: NavProps) {
 					key={link.to}
 					to={link.to}
 					end={link.end}
-					className={({ isActive }) =>
-						`hover:text-[#161616] hover:underline ${
-							isActive ? "font-bold text-[#161616] underline" : ""
-						}`
-					}
+					className={({ isActive }) => navLink({ active: isActive })}
 				>
 					{link.label}
 				</NavLink>
