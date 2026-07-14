@@ -9,9 +9,9 @@ export default function HostLayout() {
 	];
 
 	return (
-		<>
+		<div className="mx-6.5 mt-8">
 			<Nav links={hostLinks} variant="secondary" />
 			<Outlet />
-		</>
+		</div>
 	);
 }
