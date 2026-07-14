@@ -12,7 +12,7 @@ const nav = tv({
 });
 
 const navLink = tv({
-	base: "transition-colors hover:text-[#161616] hover:underline",
+	base: "transition-colors hover:font-bold hover:text-[#161616] hover:underline",
 	variants: {
 		active: {
 			true: "font-bold text-[#161616] underline",
