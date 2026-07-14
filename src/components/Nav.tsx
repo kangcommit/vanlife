@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
 import { tv } from "tailwind-variants";
+import type { NavItem } from "../types";
 
 const nav = tv({
 	base: "flex text-[#4D4D4D] text-base",
@@ -20,20 +21,15 @@ const navLink = tv({
 	},
 });
 
-type Link = {
-	to: string;
-	label: string;
-	end?: boolean;
-};
-
-type NavProps = {
-	links: Link[];
+interface NavProps {
+	links: NavItem[];
 	variant?: "primary" | "secondary";
-};
+	className?: string;
+}
 
-export function Nav({ links, variant = "primary" }: NavProps) {
+export function Nav({ links, variant = "primary", className }: NavProps) {
 	return (
-		<nav className={nav({ variant })}>
+		<nav className={nav({ variant, class: className })}>
 			{links.map((link) => (
 				<NavLink
 					key={link.to}

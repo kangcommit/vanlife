@@ -1,11 +1,12 @@
 import { Link } from "react-router";
+import type { NavItem } from "../types";
 import { Nav } from "./Nav";
 
 export default function Header() {
-	const headerLinks = [
-		{ to: "/host", label: "Host" },
-		{ to: "/about", label: "About" },
-		{ to: "/vans", label: "Vans" },
+	const headerLinks: NavItem[] = [
+		{ to: "host", label: "Host" },
+		{ to: "about", label: "About" },
+		{ to: "vans", label: "Vans" },
 	];
 
 	return (
