@@ -10,3 +10,9 @@ export interface Van {
 export interface VansResponse {
 	vans: Van[];
 }
+
+export interface NavItem {
+	to: string;
+	label: string;
+	end?: boolean;
+}
