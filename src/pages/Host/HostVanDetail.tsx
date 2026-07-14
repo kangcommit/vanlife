@@ -64,7 +64,7 @@ export default function HostVanDetail() {
 					</div>
 
 					<Nav links={tabs} className="mb-7" />
-					<Outlet />
+					<Outlet context={van} />
 				</section>
 			</>
 		);
