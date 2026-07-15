@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { tv } from "tailwind-variants";
+import { tv, type VariantProps } from "tailwind-variants";
 import type { NavItem } from "../utils/types";
 
 const nav = tv({
@@ -21,9 +21,10 @@ const navLink = tv({
 	},
 });
 
-interface NavProps {
+type NavVariants = VariantProps<typeof nav>;
+
+interface NavProps extends NavVariants {
 	links: NavItem[];
-	variant?: "primary" | "secondary";
 	className?: string;
 }
 
