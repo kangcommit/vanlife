@@ -20,44 +20,41 @@ export default function Vans() {
 
 	const vanElements = displayedVans.map((van) => {
 		return (
-			<div
+			<Link
 				key={van.id}
+				to={van.id}
+				state={{ type: typeFilter }}
+				aria-label={`View details for ${van.name}, priced at $${van.price} per day`}
 				className="group transition-transform duration-200 hover:-translate-y-1"
 			>
-				<Link
-					to={van.id}
-					state={{ type: typeFilter }}
-					aria-label={`View details for ${van.name}, priced at $${van.price} per day`}
-				>
-					<img
-						src={van.imageUrl}
-						alt={van.name}
-						className="h-56 w-full rounded-md object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-					/>
-					<div className="mt-3 flex items-start justify-between">
-						<div>
-							<h2 className="font-semibold text-coal text-xl">{van.name}</h2>
-							<p>
-								<span className="font-semibold text-coal text-xl">
-									${van.price}
-								</span>
-								<span className="text-slate text-sm">/day</span>
-							</p>
-						</div>
-						<span
-							className={`rounded-md px-3 py-1 font-semibold text-base text-peach ${
-								van.type === "simple"
-									? "bg-terracotta"
-									: van.type === "luxury"
-										? "bg-coal"
-										: "bg-teal"
-							}`}
-						>
-							{van.type.charAt(0).toUpperCase() + van.type.slice(1)}
-						</span>
+				<img
+					src={van.imageUrl}
+					alt={van.name}
+					className="aspect-square w-full rounded-md object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+				/>
+				<div className="mt-3 flex items-start justify-between">
+					<div>
+						<h2 className="font-semibold text-coal text-xl">{van.name}</h2>
+						<p>
+							<span className="font-semibold text-coal text-xl">
+								${van.price}
+							</span>
+							<span className="text-slate text-sm">/day</span>
+						</p>
 					</div>
-				</Link>
-			</div>
+					<span
+						className={`rounded-md px-3 py-1 font-semibold text-base text-peach ${
+							van.type === "simple"
+								? "bg-terracotta"
+								: van.type === "luxury"
+									? "bg-coal"
+									: "bg-teal"
+						}`}
+					>
+						{van.type.charAt(0).toUpperCase() + van.type.slice(1)}
+					</span>
+				</div>
+			</Link>
 		);
 	});
 
@@ -87,6 +84,7 @@ export default function Vans() {
 			<button
 				key={type}
 				type="button"
+				aria-pressed={typeFilter === type}
 				onClick={handleFilter}
 				className={`h-9 w-26 cursor-pointer rounded-md font-medium text-base transition-colors ${
 					typeFilter === type
