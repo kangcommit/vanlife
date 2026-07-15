@@ -1,14 +1,18 @@
 import React from "react";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import BackButton from "../../components/BackButton";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import type { Van } from "../../types";
 
 export default function VanDetail() {
 	const params = useParams();
+	const location = useLocation();
+	console.log(location);
 
 	const [van, setVan] = React.useState<Van | null>(null);
 	const [loading, setLoading] = React.useState(true);
+
+	const type = location.state.type || "all";
 
 	React.useEffect(() => {
 		setLoading(true);
@@ -26,7 +30,7 @@ export default function VanDetail() {
 	if (van) {
 		return (
 			<section className="mx-auto max-w-7xl px-6 pt-10 pb-21">
-				<BackButton className="mb-10" />
+				<BackButton className="mb-10" text={`Back to ${type} vans`} />
 
 				<div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-16">
 					<div className="lg:w-1/2">
