@@ -3,19 +3,20 @@ import { Outlet, useParams } from "react-router";
 import BackButton from "../../../components/BackButton";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import { Nav } from "../../../components/Nav";
+import VanTypeBadge from "../../../components/VanTypeBadge";
 import type { NavItem, Van } from "../../../utils/types";
+
+const tabs: NavItem[] = [
+	{ to: ".", label: "Details", end: true },
+	{ to: "pricing", label: "Pricing" },
+	{ to: "photos", label: "Photos" },
+];
 
 export default function HostVanDetail() {
 	const params = useParams();
 
 	const [van, setVan] = React.useState<Van | null>(null);
 	const [loading, setLoading] = React.useState(true);
-
-	const tabs: NavItem[] = [
-		{ to: ".", label: "Details", end: true },
-		{ to: "pricing", label: "Pricing" },
-		{ to: "photos", label: "Photos" },
-	];
 
 	React.useEffect(() => {
 		setLoading(true);
@@ -42,17 +43,7 @@ export default function HostVanDetail() {
 							className="size-40 rounded-md object-cover"
 						/>
 						<div>
-							<span
-								className={`mb-4 inline-block rounded-md px-3 py-1 font-semibold text-peach text-sm ${
-									van.type === "simple"
-										? "bg-terracotta"
-										: van.type === "luxury"
-											? "bg-coal"
-											: "bg-teal"
-								}`}
-							>
-								{van.type.charAt(0).toUpperCase() + van.type.slice(1)}
-							</span>
+							<VanTypeBadge type={van.type} className="mb-4 inline-block" />
 							<h1 className="mb-0.5 font-bold text-2xl text-coal">
 								{van.name}
 							</h1>
