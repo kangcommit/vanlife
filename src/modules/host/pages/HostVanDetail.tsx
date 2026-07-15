@@ -63,7 +63,11 @@ export default function HostVanDetail() {
 						</div>
 					</div>
 
-					<Nav links={tabs} className="mb-7" />
+					<Nav
+						links={tabs}
+						className="mb-7"
+						ariaLabel="Van detail navigation"
+					/>
 					<Outlet context={van} />
 				</section>
 			</>

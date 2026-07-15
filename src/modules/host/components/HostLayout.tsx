@@ -11,9 +11,9 @@ export default function HostLayout() {
 	];
 
 	return (
-		<div className="mx-6.5 mt-8">
-			<Nav links={hostLinks} variant="secondary" />
+		<section className="mx-6.5 mt-8">
+			<Nav links={hostLinks} variant="secondary" ariaLabel="Host navigation" />
 			<Outlet />
-		</div>
+		</section>
 	);
 }

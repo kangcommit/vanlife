@@ -17,7 +17,7 @@ export default function Header() {
 			>
 				#VanLife
 			</Link>
-			<Nav links={headerLinks} />
+			<Nav links={headerLinks} ariaLabel="Primary navigation" />
 		</header>
 	);
 }

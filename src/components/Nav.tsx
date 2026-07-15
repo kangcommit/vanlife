@@ -25,12 +25,18 @@ type NavVariants = VariantProps<typeof nav>;
 
 interface NavProps extends NavVariants {
 	links: NavItem[];
+	ariaLabel?: string;
 	className?: string;
 }
 
-export function Nav({ links, variant = "primary", className }: NavProps) {
+export function Nav({
+	links,
+	ariaLabel,
+	variant = "primary",
+	className,
+}: NavProps) {
 	return (
-		<nav className={nav({ variant, class: className })}>
+		<nav aria-label={ariaLabel} className={nav({ variant, class: className })}>
 			{links.map((link) => (
 				<NavLink
 					key={link.to}
