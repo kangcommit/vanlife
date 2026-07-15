@@ -1,42 +1,35 @@
 import React from "react";
-import { Link } from "react-router";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 import type { Van, VansResponse } from "../../../utils/types";
+import HostVanCard from "../components/HostVanCard";
 
 export default function HostVans() {
 	const [vans, setVans] = React.useState<Van[]>([]);
+	const [loading, setLoading] = React.useState(true);
 
 	React.useEffect(() => {
+		setLoading(true);
+
 		fetch("/api/host/vans")
 			.then((res) => res.json())
-			.then((data: VansResponse) => setVans(data.vans));
+			.then((data: VansResponse) => setVans(data.vans))
+			.finally(() => setLoading(false));
 	}, []);
 
-	const vanElements = vans.map((van) => (
-		<Link
-			key={van.id}
-			to={van.id}
-			aria-label={`View details for ${van.name}, priced at $${van.price} per day`}
-			className="flex items-center gap-4 rounded-md bg-white px-6 py-4.5"
-		>
-			<img
-				src={van.imageUrl}
-				alt={van.name}
-				className="size-16 rounded-md object-cover"
-			/>
+	const vanElements = vans.map((van) => <HostVanCard key={van.id} van={van} />);
 
-			<div>
-				<h2 className="font-semibold text-coal text-xl">{van.name}</h2>
-				<p className="font-medium text-base text-slate">${van.price}/day</p>
-			</div>
-		</Link>
-	));
+	if (loading) {
+		return <LoadingSpinner />;
+	}
 
-	return (
-		<>
-			<h1 className="mt-14 mb-8 font-bold text-3xl text-coal">
-				Your listed vans
-			</h1>
-			<div className="flex flex-col gap-4">{vanElements}</div>
-		</>
-	);
+	if (vans) {
+		return (
+			<>
+				<h1 className="mt-14 mb-8 font-bold text-3xl text-coal">
+					Your listed vans
+				</h1>
+				<div className="flex flex-col gap-4">{vanElements}</div>
+			</>
+		);
+	}
 }
