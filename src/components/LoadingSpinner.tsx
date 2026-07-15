@@ -6,7 +6,7 @@ interface LoadingSpinnerProps {
 
 export default function LoadingSpinner({
 	size = "h-10 w-10",
-	color = "border-[#FF8C38]",
+	color = "border-orange",
 	className,
 }: LoadingSpinnerProps) {
 	return (

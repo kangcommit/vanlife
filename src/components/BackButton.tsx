@@ -1,4 +1,4 @@
-import { FaArrowLeftLong } from "react-icons/fa6";
+import { FaArrowLeft } from "react-icons/fa6";
 import { type RelativeRoutingType, type To, useNavigate } from "react-router";
 
 interface BackButtonProps {
@@ -28,9 +28,9 @@ export default function BackButton({
 		<button
 			type="button"
 			onClick={handleClick}
-			className={`inline-flex cursor-pointer items-center gap-3 font-medium text-[#201F1D] text-base hover:underline ${className}`}
+			className={`inline-flex cursor-pointer items-center gap-3 font-medium text-base text-charcoal hover:underline ${className}`}
 		>
-			<FaArrowLeftLong className="text-[#858585]" />
+			<FaArrowLeft className="text-gray" />
 			{text}
 		</button>
 	);

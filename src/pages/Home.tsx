@@ -21,7 +21,7 @@ export default function Home() {
 
 			<Link
 				to="vans"
-				className="w-full rounded-sm bg-[#FF8C38] py-2.5 text-center font-bold text-base text-white transition-colors hover:bg-[#e57d2f] sm:w-fit sm:min-w-64 sm:px-8"
+				className="w-full rounded-sm bg-orange py-2.5 text-center font-bold text-base text-white transition-colors hover:bg-orange-dark sm:w-fit sm:min-w-64 sm:px-8"
 			>
 				Find your van
 			</Link>

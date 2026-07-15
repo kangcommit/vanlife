@@ -8,7 +8,7 @@ interface InfoRowProps {
 
 function InfoRow({ label, value }: InfoRowProps) {
 	return (
-		<div className="text-[#161616] text-sm">
+		<div className="text-coal text-sm">
 			<h4 className="inline font-bold">{label}: </h4>
 			<span className="font-medium">{value}</span>
 		</div>

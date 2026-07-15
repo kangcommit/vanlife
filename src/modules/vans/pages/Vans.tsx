@@ -22,7 +22,7 @@ export default function Vans() {
 		return (
 			<div
 				key={van.id}
-				className="group cursor-pointer transition-transform duration-200 hover:-translate-y-1"
+				className="group transition-transform duration-200 hover:-translate-y-1"
 			>
 				<Link
 					to={van.id}
@@ -36,23 +36,21 @@ export default function Vans() {
 					/>
 					<div className="mt-3 flex items-start justify-between">
 						<div>
-							<h2 className="font-semibold text-[#161616] text-xl">
-								{van.name}
-							</h2>
+							<h2 className="font-semibold text-coal text-xl">{van.name}</h2>
 							<p>
-								<span className="font-semibold text-[#161616] text-xl">
+								<span className="font-semibold text-coal text-xl">
 									${van.price}
 								</span>
-								<span className="text-[#4D4D4D] text-sm">/day</span>
+								<span className="text-slate text-sm">/day</span>
 							</p>
 						</div>
 						<span
-							className={`rounded-md px-3 py-1 font-semibold text-[#FFEAD0] text-base ${
+							className={`rounded-md px-3 py-1 font-semibold text-base text-peach ${
 								van.type === "simple"
-									? "bg-[#E17654]"
+									? "bg-terracotta"
 									: van.type === "luxury"
-										? "bg-[#161616]"
-										: "bg-[#115E59]"
+										? "bg-coal"
+										: "bg-teal"
 							}`}
 						>
 							{van.type.charAt(0).toUpperCase() + van.type.slice(1)}
@@ -68,16 +66,16 @@ export default function Vans() {
 	const typeElements = uniqueTypes.map((type) => {
 		const colorClasses: Record<string, { active: string; hover: string }> = {
 			simple: {
-				active: "bg-[#E17654]",
-				hover: "hover:bg-[#E17654]",
+				active: "bg-terracotta",
+				hover: "hover:bg-terracotta",
 			},
 			luxury: {
-				active: "bg-[#161616]",
-				hover: "hover:bg-[#161616] hover:text-[#FFEAD0]",
+				active: "bg-coal",
+				hover: "hover:bg-coal hover:text-peach",
 			},
 			rugged: {
-				active: "bg-[#115E59]",
-				hover: "hover:bg-[#115E59]",
+				active: "bg-teal",
+				hover: "hover:bg-teal",
 			},
 		};
 
@@ -92,8 +90,8 @@ export default function Vans() {
 				onClick={handleFilter}
 				className={`h-9 w-26 cursor-pointer rounded-md font-medium text-base transition-colors ${
 					typeFilter === type
-						? `${colorClasses[type].active} font-semibold text-[#FFEAD0]`
-						: `bg-[#FFEAD0] text-[#4D4D4D] ${colorClasses[type].hover} hover:text-[#FFEAD0]`
+						? `${colorClasses[type].active} font-semibold text-peach`
+						: `bg-peach text-slate ${colorClasses[type].hover} hover:text-peach`
 				}`}
 			>
 				{type.charAt(0).toUpperCase() + type.slice(1)}
@@ -114,7 +112,7 @@ export default function Vans() {
 					<button
 						type="button"
 						onClick={handleClearFilter}
-						className="cursor-pointer font-medium text-[#4D4D4D] hover:underline"
+						className="cursor-pointer font-medium text-slate hover:underline"
 					>
 						Clear filters
 					</button>

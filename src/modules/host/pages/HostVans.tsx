@@ -25,15 +25,15 @@ export default function HostVans() {
 			/>
 
 			<div>
-				<h2 className="font-semibold text-[#161616] text-xl">{van.name}</h2>
-				<p className="font-medium text-[#4D4D4D] text-base">${van.price}/day</p>
+				<h2 className="font-semibold text-coal text-xl">{van.name}</h2>
+				<p className="font-medium text-base text-slate">${van.price}/day</p>
 			</div>
 		</Link>
 	));
 
 	return (
 		<>
-			<h1 className="mt-14 mb-8 font-bold text-[#161616] text-[32px]">
+			<h1 className="mt-14 mb-8 font-bold text-3xl text-coal">
 				Your listed vans
 			</h1>
 			<div className="flex flex-col gap-4">{vanElements}</div>

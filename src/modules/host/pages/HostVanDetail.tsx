@@ -43,20 +43,20 @@ export default function HostVanDetail() {
 						/>
 						<div>
 							<span
-								className={`mb-4 inline-block rounded-md px-3 py-1 font-semibold text-[#FFEAD0] text-sm ${
+								className={`mb-4 inline-block rounded-md px-3 py-1 font-semibold text-peach text-sm ${
 									van.type === "simple"
-										? "bg-[#E17654]"
+										? "bg-terracotta"
 										: van.type === "luxury"
-											? "bg-[#161616]"
-											: "bg-[#115E59]"
+											? "bg-coal"
+											: "bg-teal"
 								}`}
 							>
 								{van.type.charAt(0).toUpperCase() + van.type.slice(1)}
 							</span>
-							<h1 className="mb-0.5 font-bold text-[#161616] text-[26px]">
+							<h1 className="mb-0.5 font-bold text-2xl text-coal">
 								{van.name}
 							</h1>
-							<p className="text-[#161616]">
+							<p className="text-coal">
 								<span className="font-bold text-xl">${van.price}</span>
 								<span className="font-medium text-base">/day</span>
 							</p>

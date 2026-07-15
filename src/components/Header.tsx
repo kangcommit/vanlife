@@ -10,7 +10,7 @@ export default function Header() {
 	];
 
 	return (
-		<header className="flex items-center justify-between bg-[#FFF7ED] px-6.5 py-9">
+		<header className="flex items-center justify-between bg-sand px-6.5 py-9">
 			<Link
 				to="/"
 				className="font-black text-2xl text-black uppercase hover:underline"

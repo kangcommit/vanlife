@@ -43,12 +43,12 @@ export default function VanDetail() {
 
 					<div className="flex flex-1 flex-col">
 						<span
-							className={`mb-6 w-fit rounded-md px-3 py-1 font-semibold text-[#FFEAD0] ${
+							className={`mb-6 w-fit rounded-md px-3 py-1 font-semibold text-peach ${
 								van.type === "simple"
-									? "bg-[#E17654]"
+									? "bg-terracotta"
 									: van.type === "luxury"
-										? "bg-[#161616]"
-										: "bg-[#115E59]"
+										? "bg-coal"
+										: "bg-teal"
 							}`}
 						>
 							{van.type.charAt(0).toUpperCase() + van.type.slice(1)}
@@ -56,16 +56,16 @@ export default function VanDetail() {
 
 						<h1 className="mb-3 font-bold text-3xl md:text-4xl">{van.name}</h1>
 
-						<p className="mb-6 text-[#161616]">
+						<p className="mb-6 text-coal">
 							<span className="font-bold text-2xl">${van.price}</span>
 							<span className="font-medium text-xl">/day</span>
 						</p>
 
-						<p className="mb-8 text-[#161616] leading-7">{van.description}</p>
+						<p className="mb-8 text-coal leading-7">{van.description}</p>
 
 						<button
 							type="button"
-							className="w-full rounded-md bg-[#FF8C38] py-3 font-bold text-lg text-white transition-colors hover:bg-[#e67c2f] md:w-fit md:px-12"
+							className="w-full rounded-md bg-orange py-3 font-bold text-lg text-white transition-colors hover:bg-orange-hover md:w-fit md:px-12"
 						>
 							Rent this van
 						</button>
