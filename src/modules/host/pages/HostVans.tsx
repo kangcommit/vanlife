@@ -1,4 +1,5 @@
 import React from "react";
+import ErrorMessage from "../../../components/ErrorMessage";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import type { Van, VansResponse } from "../../../utils/types";
 import HostVanCard from "../components/HostVanCard";
@@ -6,20 +7,40 @@ import HostVanCard from "../components/HostVanCard";
 export default function HostVans() {
 	const [vans, setVans] = React.useState<Van[]>([]);
 	const [loading, setLoading] = React.useState(true);
+	const [error, setError] = React.useState(false);
+
+	const fetchVans = React.useCallback(async () => {
+		setLoading(true);
+		setError(false);
+
+		try {
+			const response = await fetch("/api/host/vans");
+
+			if (!response.ok) {
+				throw new Error(`Response status: ${response.status}`);
+			}
+
+			const data: VansResponse = await response.json();
+			setVans(data.vans);
+		} catch (_) {
+			setError(true);
+		} finally {
+			setLoading(false);
+		}
+	}, []);
 
 	React.useEffect(() => {
-		setLoading(true);
-
-		fetch("/api/host/vans")
-			.then((res) => res.json())
-			.then((data: VansResponse) => setVans(data.vans))
-			.finally(() => setLoading(false));
-	}, []);
+		fetchVans();
+	}, [fetchVans]);
 
 	const vanElements = vans.map((van) => <HostVanCard key={van.id} van={van} />);
 
 	if (loading) {
 		return <LoadingSpinner />;
+	}
+
+	if (error) {
+		return <ErrorMessage onRetry={fetchVans} />;
 	}
 
 	if (vans) {

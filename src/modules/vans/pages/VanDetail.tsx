@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation, useParams } from "react-router";
 import BackButton from "../../../components/BackButton";
+import ErrorMessage from "../../../components/ErrorMessage";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import VanTypeBadge from "../../../components/VanTypeBadge";
 import type { Van } from "../../../utils/types";
@@ -11,20 +12,40 @@ export default function VanDetail() {
 
 	const [van, setVan] = React.useState<Van | null>(null);
 	const [loading, setLoading] = React.useState(true);
+	const [error, setError] = React.useState(false);
 
 	const type = location.state?.type || "all";
 
-	React.useEffect(() => {
+	const fetchVan = React.useCallback(async () => {
 		setLoading(true);
+		setError(false);
 
-		fetch(`/api/vans/${params.id}`)
-			.then((res) => res.json())
-			.then((data) => setVan(data.vans))
-			.finally(() => setLoading(false));
+		try {
+			const response = await fetch(`/api/vans/${params.id}`);
+
+			if (!response.ok) {
+				throw new Error(`Response status: ${response.status}`);
+			}
+
+			const data = await response.json();
+			setVan(data.vans);
+		} catch (_) {
+			setError(true);
+		} finally {
+			setLoading(false);
+		}
 	}, [params.id]);
+
+	React.useEffect(() => {
+		fetchVan();
+	}, [fetchVan]);
 
 	if (loading) {
 		return <LoadingSpinner />;
+	}
+
+	if (error) {
+		return <ErrorMessage onRetry={fetchVan} />;
 	}
 
 	if (van) {
