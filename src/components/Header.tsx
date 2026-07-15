@@ -2,13 +2,13 @@ import { Link } from "react-router";
 import type { NavItem } from "../utils/types";
 import { Nav } from "./Nav";
 
-export default function Header() {
-	const headerLinks: NavItem[] = [
-		{ to: "host", label: "Host" },
-		{ to: "about", label: "About" },
-		{ to: "vans", label: "Vans" },
-	];
+const headerLinks: NavItem[] = [
+	{ to: "host", label: "Host" },
+	{ to: "about", label: "About" },
+	{ to: "vans", label: "Vans" },
+];
 
+export default function Header() {
 	return (
 		<header className="flex items-center justify-between bg-sand px-6.5 py-9">
 			<Link
