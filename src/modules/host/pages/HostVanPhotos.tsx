@@ -5,10 +5,6 @@ export default function HostVanPhotos() {
 	const van = useOutletContext<Van>();
 
 	return (
-		<img
-			src={van.imageUrl}
-			alt={van.name}
-			className="w-26 rounded-md object-cover"
-		/>
+		<img src={van.imageUrl} alt={van.name} className="size-26 rounded-md" />
 	);
 }
