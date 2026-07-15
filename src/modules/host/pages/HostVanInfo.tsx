@@ -9,8 +9,8 @@ interface InfoRowProps {
 function InfoRow({ label, value }: InfoRowProps) {
 	return (
 		<div className="text-coal text-sm">
-			<h4 className="inline font-bold">{label}: </h4>
-			<span className="font-medium">{value}</span>
+			<dt className="inline font-bold">{label}: </dt>
+			<dd className="inline font-medium">{value}</dd>
 		</div>
 	);
 }
@@ -19,11 +19,13 @@ export default function HostVanInfo() {
 	const van = useOutletContext<Van>();
 
 	return (
-		<section className="flex flex-col gap-4">
-			<InfoRow label="Name" value={van.name} />
-			<InfoRow label="Category" value={van.type} />
-			<InfoRow label="Description" value={van.description} />
-			<InfoRow label="Visibility" value="Public" />
+		<section>
+			<dl className="flex flex-col gap-4">
+				<InfoRow label="Name" value={van.name} />
+				<InfoRow label="Category" value={van.type} />
+				<InfoRow label="Description" value={van.description} />
+				<InfoRow label="Visibility" value="Public" />
+			</dl>
 		</section>
 	);
 }
