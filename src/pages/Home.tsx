@@ -2,7 +2,7 @@ import HomeHero from "../assets/images/home-hero.png";
 
 export default function Home() {
 	return (
-		<section className="relative flex min-h-screen flex-1 flex-col justify-center overflow-hidden px-5 sm:px-8">
+		<section className="relative flex min-h-[calc(100vh-172px)] flex-col justify-center px-5 sm:px-8">
 			<img
 				src={HomeHero}
 				alt=""
