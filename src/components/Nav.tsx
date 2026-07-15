@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
 import { tv } from "tailwind-variants";
-import type { NavItem } from "../types";
+import type { NavItem } from "../utils/types";
 
 const nav = tv({
 	base: "flex text-[#4D4D4D] text-base",

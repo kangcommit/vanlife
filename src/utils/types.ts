@@ -1,3 +1,5 @@
+import type { Dispatch, SetStateAction } from "react";
+
 export interface Van {
 	id: string;
 	name: string;
@@ -16,4 +18,9 @@ export interface NavItem {
 	to: string;
 	label: string;
 	end?: boolean;
+}
+
+export interface HostVanContext {
+	van: Van;
+	setVan: Dispatch<SetStateAction<Van | null>>;
 }

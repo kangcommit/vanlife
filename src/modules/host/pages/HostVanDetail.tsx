@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet, useParams } from "react-router";
-import BackButton from "../../components/BackButton";
-import LoadingSpinner from "../../components/LoadingSpinner";
-import { Nav } from "../../components/Nav";
-import type { NavItem, Van } from "../../types";
+import BackButton from "../../../components/BackButton";
+import LoadingSpinner from "../../../components/LoadingSpinner";
+import { Nav } from "../../../components/Nav";
+import type { NavItem, Van } from "../../../utils/types";
 
 export default function HostVanDetail() {
 	const params = useParams();

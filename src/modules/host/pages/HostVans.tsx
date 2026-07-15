@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-import type { Van, VansResponse } from "../../types";
+import type { Van, VansResponse } from "../../../utils/types";
 
 export default function HostVans() {
 	const [vans, setVans] = React.useState<Van[]>([]);

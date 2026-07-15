@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
-import type { NavItem } from "../types";
-import { Nav } from "./Nav";
+import { Nav } from "../../../components/Nav";
+import type { NavItem } from "../../../utils/types";
 
 export default function HostLayout() {
 	const hostLinks: NavItem[] = [

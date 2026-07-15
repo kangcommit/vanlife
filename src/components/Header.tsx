@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import type { NavItem } from "../types";
+import type { NavItem } from "../utils/types";
 import { Nav } from "./Nav";
 
 export default function Header() {
