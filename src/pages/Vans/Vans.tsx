@@ -26,6 +26,7 @@ export default function Vans() {
 			>
 				<Link
 					to={van.id}
+					state={{ type: typeFilter }}
 					aria-label={`View details for ${van.name}, priced at $${van.price} per day`}
 				>
 					<img
