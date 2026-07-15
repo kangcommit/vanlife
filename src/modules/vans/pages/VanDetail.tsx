@@ -7,12 +7,11 @@ import type { Van } from "../../../utils/types";
 export default function VanDetail() {
 	const params = useParams();
 	const location = useLocation();
-	console.log(location);
 
 	const [van, setVan] = React.useState<Van | null>(null);
 	const [loading, setLoading] = React.useState(true);
 
-	const type = location.state.type || "all";
+	const type = location.state?.type || "all";
 
 	React.useEffect(() => {
 		setLoading(true);
