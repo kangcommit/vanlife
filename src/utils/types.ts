@@ -6,7 +6,7 @@ export interface Van {
 	price: number;
 	description: string;
 	imageUrl: string;
-	type: string;
+	type: VanType;
 	hostId: string;
 }
 
@@ -24,3 +24,5 @@ export interface HostVanContext {
 	van: Van;
 	setVan: Dispatch<SetStateAction<Van | null>>;
 }
+
+export type VanType = "simple" | "luxury" | "rugged";
