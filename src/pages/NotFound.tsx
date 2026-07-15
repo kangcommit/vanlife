@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export default function NotFound() {
 	return (
-		<div className="flex min-h-[calc(100vh-172px)] flex-col items-center justify-center gap-7.5 px-6.5 text-center">
+		<section className="flex min-h-[calc(100vh-172px)] flex-col items-center justify-center gap-7.5 px-6.5 text-center">
 			<h1 className="font-bold text-3xl text-coal">
 				Sorry, the page you were looking for was not found.
 			</h1>
@@ -13,6 +13,6 @@ export default function NotFound() {
 			>
 				Return to home
 			</Link>
-		</div>
+		</section>
 	);
 }
