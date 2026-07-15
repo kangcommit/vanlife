@@ -8,10 +8,10 @@ interface InfoRowProps {
 
 function InfoRow({ label, value }: InfoRowProps) {
 	return (
-		<p className="text-[#161616] text-sm">
-			<span className="font-bold">{label}: </span>
+		<div className="text-[#161616] text-sm">
+			<h4 className="inline font-bold">{label}: </h4>
 			<span className="font-medium">{value}</span>
-		</p>
+		</div>
 	);
 }
 
