@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import HostLayout from "./components/HostLayout";
 import Layout from "./components/Layout";
+import NotFound from "./components/NotFound";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Host/Dashboard";
@@ -35,6 +36,8 @@ function App() {
 						</Route>
 						<Route path="reviews" element={<Reviews />} />
 					</Route>
+
+					<Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
