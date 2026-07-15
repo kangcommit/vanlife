@@ -1,9 +1,12 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import type { Van, VansResponse } from "../../types";
 
 export default function Vans() {
+	const [searchParams, setSearchParams] = useSearchParams();
 	const [vans, setVans] = React.useState<Van[]>([]);
+
+	const typeFilter = searchParams.get("type");
 
 	React.useEffect(() => {
 		fetch("/api/vans")
@@ -11,7 +14,11 @@ export default function Vans() {
 			.then((data: VansResponse) => setVans(data.vans));
 	}, []);
 
-	const vanElements = vans.map((van) => {
+	const displayedVans = typeFilter
+		? vans.filter((van) => van.type === typeFilter.toLocaleLowerCase())
+		: vans;
+
+	const vanElements = displayedVans.map((van) => {
 		return (
 			<div
 				key={van.id}
@@ -58,28 +65,59 @@ export default function Vans() {
 	const uniqueTypes = [...new Set(vans.map((van) => van.type))];
 
 	const typeElements = uniqueTypes.map((type) => {
+		const colorClasses: Record<string, { active: string; hover: string }> = {
+			simple: {
+				active: "bg-[#E17654]",
+				hover: "hover:bg-[#E17654]",
+			},
+			luxury: {
+				active: "bg-[#161616]",
+				hover: "hover:bg-[#161616] hover:text-[#FFEAD0]",
+			},
+			rugged: {
+				active: "bg-[#115E59]",
+				hover: "hover:bg-[#115E59]",
+			},
+		};
+
+		function handleFilter() {
+			setSearchParams({ type });
+		}
+
 		return (
 			<button
 				key={type}
 				type="button"
-				className="h-9 w-26 cursor-pointer rounded-md bg-[#FFEAD0] font-medium text-[#4D4D4D] text-base"
+				onClick={handleFilter}
+				className={`h-9 w-26 cursor-pointer rounded-md font-medium text-base transition-colors ${
+					typeFilter === type
+						? `${colorClasses[type].active} font-semibold text-[#FFEAD0]`
+						: `bg-[#FFEAD0] text-[#4D4D4D] ${colorClasses[type].hover} hover:text-[#FFEAD0]`
+				}`}
 			>
 				{type.charAt(0).toUpperCase() + type.slice(1)}
 			</button>
 		);
 	});
 
+	function handleClearFilter() {
+		setSearchParams({});
+	}
+
 	return (
 		<section className="mx-auto mt-13.5 mb-21 max-w-7xl px-6">
 			<h1 className="mb-6 font-bold text-3xl">Explore our van options</h1>
 			<div className="mb-10 flex flex-wrap items-center justify-between gap-4">
 				<div className="flex flex-wrap gap-3">{typeElements}</div>
-				<button
-					type="button"
-					className="cursor-pointer font-medium text-[#4D4D4D] underline underline-offset-2"
-				>
-					Clear filters
-				</button>
+				{typeFilter && (
+					<button
+						type="button"
+						onClick={handleClearFilter}
+						className="cursor-pointer font-medium text-[#4D4D4D] hover:underline"
+					>
+						Clear filters
+					</button>
+				)}
 			</div>
 			<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
 				{vanElements}
