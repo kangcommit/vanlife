@@ -15,7 +15,7 @@ export default function Vans() {
 	}, []);
 
 	const displayedVans = typeFilter
-		? vans.filter((van) => van.type === typeFilter.toLocaleLowerCase())
+		? vans.filter((van) => van.type === typeFilter)
 		: vans;
 
 	const vanElements = displayedVans.map((van) => {
