@@ -3,16 +3,16 @@ import { type RelativeRoutingType, type To, useNavigate } from "react-router";
 
 interface BackButtonProps {
 	text?: string;
-	className?: string;
 	to?: To | number;
 	relative?: RelativeRoutingType;
+	className?: string;
 }
 
 export default function BackButton({
 	text = "Back to all vans",
-	className = "",
 	to = -1,
 	relative,
+	className,
 }: BackButtonProps) {
 	const navigate = useNavigate();
 
