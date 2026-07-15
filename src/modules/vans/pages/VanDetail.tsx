@@ -3,6 +3,7 @@ import { useLocation, useParams } from "react-router";
 import BackButton from "../../../components/BackButton";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import type { Van } from "../../../utils/types";
+import VanTypeBadge from "../components/VanTypeBadge";
 
 export default function VanDetail() {
 	const params = useParams();
@@ -39,17 +40,7 @@ export default function VanDetail() {
 					/>
 
 					<div className="flex flex-1 flex-col">
-						<span
-							className={`mb-6 w-fit rounded-md px-3 py-1 font-semibold text-peach ${
-								van.type === "simple"
-									? "bg-terracotta"
-									: van.type === "luxury"
-										? "bg-coal"
-										: "bg-teal"
-							}`}
-						>
-							{van.type.charAt(0).toUpperCase() + van.type.slice(1)}
-						</span>
+						<VanTypeBadge type={van.type} className="mb-6 w-fit" />
 
 						<h1 className="mb-3 font-bold text-3xl md:text-4xl">{van.name}</h1>
 

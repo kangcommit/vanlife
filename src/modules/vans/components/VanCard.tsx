@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import { capitalize } from "../../../utils/format";
 import type { Van } from "../../../utils/types";
+import VanTypeBadge from "./VanTypeBadge";
 
 interface VanCardProps {
 	van: Van;
@@ -31,17 +31,7 @@ export default function VanCard({ van, typeFilter }: VanCardProps) {
 						<span className="text-slate text-sm">/day</span>
 					</p>
 				</div>
-				<span
-					className={`rounded-md px-3 py-1 font-semibold text-base text-peach ${
-						van.type === "simple"
-							? "bg-terracotta"
-							: van.type === "luxury"
-								? "bg-coal"
-								: "bg-teal"
-					}`}
-				>
-					{capitalize(van.type)}
-				</span>
+				<VanTypeBadge type={van.type} />
 			</div>
 		</Link>
 	);
