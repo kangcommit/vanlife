@@ -32,13 +32,11 @@ export default function VanDetail() {
 				<BackButton className="mb-10" text={`Back to ${type} vans`} />
 
 				<div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-16">
-					<div className="lg:w-1/2">
-						<img
-							src={van.imageUrl}
-							alt={van.name}
-							className="h-auto w-full rounded-lg object-cover lg:h-162.5"
-						/>
-					</div>
+					<img
+						src={van.imageUrl}
+						alt={van.name}
+						className="mx-auto aspect-square w-full max-w-md rounded-lg lg:w-1/2 lg:max-w-none"
+					/>
 
 					<div className="flex flex-1 flex-col">
 						<span
