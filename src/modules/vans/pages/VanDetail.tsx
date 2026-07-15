@@ -2,8 +2,8 @@ import React from "react";
 import { useLocation, useParams } from "react-router";
 import BackButton from "../../../components/BackButton";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import VanTypeBadge from "../../../components/VanTypeBadge";
 import type { Van } from "../../../utils/types";
-import VanTypeBadge from "../components/VanTypeBadge";
 
 export default function VanDetail() {
 	const params = useParams();

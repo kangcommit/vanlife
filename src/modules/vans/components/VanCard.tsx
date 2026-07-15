@@ -1,6 +1,6 @@
 import { Link } from "react-router";
+import VanTypeBadge from "../../../components/VanTypeBadge";
 import type { Van } from "../../../utils/types";
-import VanTypeBadge from "./VanTypeBadge";
 
 interface VanCardProps {
 	van: Van;
