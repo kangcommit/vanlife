@@ -4,7 +4,11 @@ import AboutHero from "../assets/images/about-hero.png";
 export default function About() {
 	return (
 		<section>
-			<img src={AboutHero} alt="" className="h-58 w-full object-cover" />
+			<img
+				src={AboutHero}
+				alt="A camper van parked in a scenic location"
+				className="w-full"
+			/>
 
 			<div className="mb-14 flex flex-col gap-8 px-6.5 py-12">
 				<h1 className="font-bold text-3xl text-coal">
