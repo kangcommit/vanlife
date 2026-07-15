@@ -9,7 +9,7 @@ interface BackButtonProps {
 }
 
 export default function BackButton({
-	text = "Back",
+	text = "Back to all vans",
 	className = "",
 	to = -1,
 	relative,
