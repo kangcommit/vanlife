@@ -14,7 +14,7 @@ export default function HostVans() {
 	const vanElements = vans.map((van) => (
 		<Link
 			key={van.id}
-			to={`/host/vans/${van.id}`}
+			to={van.id}
 			aria-label={`View details for ${van.name}, priced at $${van.price} per day`}
 			className="flex items-center gap-4 rounded-md bg-white px-6 py-4.5"
 		>

@@ -25,7 +25,7 @@ export default function Vans() {
 				className="group cursor-pointer transition-transform duration-200 hover:-translate-y-1"
 			>
 				<Link
-					to={`/vans/${van.id}`}
+					to={van.id}
 					aria-label={`View details for ${van.name}, priced at $${van.price} per day`}
 				>
 					<img
