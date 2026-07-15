@@ -6,10 +6,9 @@ const vanTypeButton = tv({
 	base: "h-9 w-26 cursor-pointer rounded-md bg-peach text-base transition-colors",
 	variants: {
 		type: {
-			simple:
-				"hover:bg-terracotta hover:text-peach data-[selected=true]:bg-terracotta",
-			luxury: "hover:bg-coal hover:text-peach data-[selected=true]:bg-coal",
-			rugged: "hover:bg-teal hover:text-peach data-[selected=true]:bg-teal",
+			simple: "hover:bg-terracotta hover:text-peach aria-pressed:bg-terracotta",
+			luxury: "hover:bg-coal hover:text-peach aria-pressed:bg-coal",
+			rugged: "hover:bg-teal hover:text-peach aria-pressed:bg-teal",
 		},
 		selected: {
 			true: "font-semibold text-peach",
@@ -21,7 +20,7 @@ const vanTypeButton = tv({
 interface VanTypeFilterProps {
 	types: VanType[];
 	selectedType: string | null;
-	onSelect(type: string): void;
+	onSelect(type: VanType): void;
 }
 
 export default function VanTypeFilter({
@@ -38,7 +37,6 @@ export default function VanTypeFilter({
 						type="button"
 						aria-pressed={selectedType === type}
 						onClick={() => onSelect(type)}
-						data-selected={selectedType === type}
 						className={vanTypeButton({
 							type,
 							selected: selectedType === type,
