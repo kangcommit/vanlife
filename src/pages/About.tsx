@@ -27,7 +27,7 @@ export default function About() {
 					Your destination is waiting. Your van is ready.
 				</h2>
 				<Link
-					to={""}
+					to="/vans"
 					className="rounded-[10px] bg-[#161616] px-5.5 py-3 font-bold text-base text-white"
 				>
 					Explore our vans
