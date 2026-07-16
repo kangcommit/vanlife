@@ -19,7 +19,7 @@ export default function Vans() {
 		setError(false);
 
 		try {
-			const response = await fetch("/api/van");
+			const response = await fetch("/api/vans");
 
 			if (!response.ok) {
 				throw new Error(`Response status: ${response.status}`);
