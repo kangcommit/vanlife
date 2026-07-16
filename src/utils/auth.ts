@@ -3,7 +3,7 @@ interface LoginCredentials {
 	password: string;
 }
 
-export async function signIn({ email, password }: LoginCredentials) {
+export async function signInUser({ email, password }: LoginCredentials) {
 	const res = await fetch("/api/login", {
 		method: "post",
 		body: JSON.stringify({ email, password }),
@@ -11,11 +11,7 @@ export async function signIn({ email, password }: LoginCredentials) {
 	const data = await res.json();
 
 	if (!res.ok) {
-		throw {
-			message: data.message,
-			statusText: res.statusText,
-			status: res.status,
-		};
+		throw new Error(data.message);
 	}
 
 	return data;
