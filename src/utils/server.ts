@@ -1,11 +1,12 @@
-import { createServer, Model, type Registry } from "miragejs";
+import { createServer, Model, type Registry, Response } from "miragejs";
 import type { ModelDefinition } from "miragejs/-types";
 import type Schema from "miragejs/orm/schema";
-import type { Van } from "./types";
+import type { User, Van } from "./types";
 
 type AppRegistry = Registry<
 	{
 		vans: ModelDefinition<Van>;
+		users: ModelDefinition<User>;
 	},
 	{}
 >;
@@ -15,6 +16,7 @@ type AppSchema = Schema<AppRegistry>;
 createServer({
 	models: {
 		vans: Model,
+		users: Model,
 	},
 
 	seeds(server) {
@@ -84,6 +86,13 @@ createServer({
 			type: "rugged",
 			hostId: "123",
 		});
+
+		server.create("user", {
+			id: "123",
+			email: "b@b.com",
+			password: "p123",
+			name: "Bob",
+		});
 	},
 
 	routes() {
@@ -107,6 +116,31 @@ createServer({
 				id: request.params.id,
 				hostId: "123",
 			});
+		});
+
+		this.post("/login", (schema: AppSchema, request) => {
+			const { email, password } = JSON.parse(request.requestBody);
+
+			const foundUser = schema.findBy("users", { email, password });
+
+			if (!foundUser) {
+				return new Response(
+					401,
+					{},
+					{ message: "No user with those credentials found!" },
+				);
+			}
+
+			const { password: _, ...user } = foundUser.attrs;
+
+			return new Response(
+				200,
+				{},
+				{
+					user,
+					token: "Enjoy your pizza, here's your tokens.",
+				},
+			);
 		});
 	},
 });

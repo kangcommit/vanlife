@@ -26,3 +26,10 @@ export interface HostVanContext {
 }
 
 export type VanType = "simple" | "luxury" | "rugged";
+
+export interface User {
+	id: string;
+	email: string;
+	password: string;
+	name: string;
+}
