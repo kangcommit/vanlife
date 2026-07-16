@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Alert } from "../components/Alert";
 import { Input } from "../components/Input";
-import { signIn } from "../utils/auth";
+import { signIn, signInUser } from "../utils/auth";
 
 export default function Login() {
 	const [loginFormData, setLoginFormData] = React.useState({
@@ -32,17 +32,13 @@ export default function Login() {
 		setLoading(true);
 
 		try {
-			await signIn(loginFormData);
+			await signInUser(loginFormData);
 
 			setError(null);
-			localStorage.setItem("isSignedIn", "true");
+			signIn();
 			navigate(from, { replace: true });
 		} catch (err) {
-			if (err instanceof Error) {
-				setError(err.message);
-			} else {
-				setError("Something went wrong");
-			}
+			setError(err instanceof Error ? err.message : "Something went wrong");
 		} finally {
 			setLoading(false);
 		}
