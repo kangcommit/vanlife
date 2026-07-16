@@ -1,12 +1,11 @@
 import { Navigate, Outlet, useLocation } from "react-router";
+import { isSignedIn } from "../utils/auth";
 
 export default function AuthRequired() {
-	const isSignedIn = localStorage.getItem("isSignedIn");
-
 	const location = useLocation();
 	const { pathname } = location;
 
-	return isSignedIn ? (
+	return isSignedIn() ? (
 		<Outlet />
 	) : (
 		<Navigate
