@@ -1,7 +1,8 @@
 import React from "react";
-import { FaCircleInfo, FaTriangleExclamation } from "react-icons/fa6";
 import { useLocation, useNavigate } from "react-router";
+import { Alert } from "../components/Alert";
 import { Input } from "../components/Input";
+import { signIn } from "../utils/auth";
 
 export default function Login() {
 	const [loginFormData, setLoginFormData] = React.useState({
@@ -17,30 +18,6 @@ export default function Login() {
 	const message = location.state?.message;
 	const from = location.state?.from ?? "/host";
 
-	async function signInUser({
-		email,
-		password,
-	}: {
-		email: string;
-		password: string;
-	}) {
-		const res = await fetch("/api/login", {
-			method: "post",
-			body: JSON.stringify({ email, password }),
-		});
-		const data = await res.json();
-
-		if (!res.ok) {
-			throw {
-				message: data.message,
-				statusText: res.statusText,
-				status: res.status,
-			};
-		}
-
-		return data;
-	}
-
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		const { name, value } = e.target;
 		setLoginFormData((prev) => ({
@@ -49,57 +26,36 @@ export default function Login() {
 		}));
 	}
 
-	function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+	async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
 
 		setLoading(true);
-		signInUser(loginFormData)
-			.then(() => {
-				setError(null);
-				localStorage.setItem("isSignedIn", "true");
-				navigate(from, { replace: true });
-			})
-			.catch((err) => {
-				console.log(err);
+
+		try {
+			await signIn(loginFormData);
+
+			setError(null);
+			localStorage.setItem("isSignedIn", "true");
+			navigate(from, { replace: true });
+		} catch (err) {
+			if (err instanceof Error) {
 				setError(err.message);
-			})
-			.finally(() => setLoading(false));
+			} else {
+				setError("Something went wrong");
+			}
+		} finally {
+			setLoading(false);
+		}
 	}
 
 	return (
 		<div className="mx-6.5 flex flex-col items-center gap-12">
 			<h1 className="font-bold text-3xl text-coal">Sign in to your account</h1>
 
-			{!error && message && (
-				<div
-					role="status"
-					aria-live="polite"
-					className="flex w-full max-w-md items-start gap-3 rounded-md border border-amber-200 bg-amber-50 px-4 py-3"
-				>
-					<FaCircleInfo
-						aria-hidden="true"
-						className="mt-0.5 shrink-0 text-amber-600 text-base"
-					/>
-
-					<p className="font-medium text-amber-900 text-sm leading-6">
-						{message}
-					</p>
-				</div>
+			{(message || error) && (
+				<Alert variant={error ? "error" : "info"}>{error ?? message}</Alert>
 			)}
-			{error && (
-				<div
-					role="alert"
-					aria-live="assertive"
-					className="flex w-full max-w-md items-start gap-3 rounded-md border border-red-200 bg-red-50 px-4 py-3"
-				>
-					<FaTriangleExclamation
-						aria-hidden="true"
-						className="mt-0.5 shrink-0 text-base text-red-600"
-					/>
 
-					<p className="font-medium text-red-900 text-sm leading-6">{error}</p>
-				</div>
-			)}
 			<form onSubmit={handleSubmit} className="flex w-full max-w-md flex-col">
 				<label htmlFor="email" className="sr-only">
 					Email address
