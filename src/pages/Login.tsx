@@ -1,16 +1,16 @@
-import React from "react";
+import { type ChangeEvent, type SubmitEvent, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Alert } from "../components/Alert";
 import { Input } from "../components/Input";
 import { signIn, signInUser } from "../utils/auth";
 
 export default function Login() {
-	const [loginFormData, setLoginFormData] = React.useState({
+	const [loginFormData, setLoginFormData] = useState({
 		email: "",
 		password: "",
 	});
-	const [loading, setLoading] = React.useState(false);
-	const [error, setError] = React.useState<string | null>(null);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState<string | null>(null);
 
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function Login() {
 	const message = location.state?.message;
 	const from = location.state?.from ?? "/host";
 
-	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+	function handleChange(e: ChangeEvent<HTMLInputElement>) {
 		const { name, value } = e.target;
 		setLoginFormData((prev) => ({
 			...prev,
@@ -26,7 +26,7 @@ export default function Login() {
 		}));
 	}
 
-	async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+	async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
 
 		setLoading(true);

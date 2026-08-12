@@ -1,4 +1,4 @@
-import React from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
 import BackButton from "../../../components/BackButton";
 import ErrorMessage from "../../../components/ErrorMessage";
@@ -10,13 +10,13 @@ export default function VanDetail() {
 	const params = useParams();
 	const location = useLocation();
 
-	const [van, setVan] = React.useState<Van | null>(null);
-	const [loading, setLoading] = React.useState(true);
-	const [error, setError] = React.useState(false);
+	const [van, setVan] = useState<Van | null>(null);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(false);
 
 	const type = location.state?.type || "all";
 
-	const fetchVan = React.useCallback(async () => {
+	const fetchVan = useCallback(async () => {
 		setLoading(true);
 		setError(false);
 
@@ -36,7 +36,7 @@ export default function VanDetail() {
 		}
 	}, [params.id]);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		fetchVan();
 	}, [fetchVan]);
 

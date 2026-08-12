@@ -1,15 +1,15 @@
-import React from "react";
+import { useCallback, useEffect, useState } from "react";
 import ErrorMessage from "../../../components/ErrorMessage";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import type { Van, VansResponse } from "../../../utils/types";
 import HostVanCard from "../components/HostVanCard";
 
 export default function HostVans() {
-	const [vans, setVans] = React.useState<Van[]>([]);
-	const [loading, setLoading] = React.useState(true);
-	const [error, setError] = React.useState(false);
+	const [vans, setVans] = useState<Van[]>([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(false);
 
-	const fetchVans = React.useCallback(async () => {
+	const fetchVans = useCallback(async () => {
 		setLoading(true);
 		setError(false);
 
@@ -29,7 +29,7 @@ export default function HostVans() {
 		}
 	}, []);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		fetchVans();
 	}, [fetchVans]);
 

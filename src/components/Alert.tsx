@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { FaCircleInfo, FaTriangleExclamation } from "react-icons/fa6";
 import { tv } from "tailwind-variants";
 
@@ -28,7 +29,7 @@ const alert = tv({
 
 type AlertProps = {
 	variant?: "info" | "error";
-	children: React.ReactNode;
+	children: ReactNode;
 };
 
 export function Alert({ variant = "info", children }: AlertProps) {

@@ -1,4 +1,4 @@
-import React from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import ErrorMessage from "../../../components/ErrorMessage";
 import LoadingSpinner from "../../../components/LoadingSpinner";
@@ -8,13 +8,13 @@ import VanTypeFilter from "../components/VanTypeFilter";
 
 export default function Vans() {
 	const [searchParams, setSearchParams] = useSearchParams();
-	const [vans, setVans] = React.useState<Van[]>([]);
-	const [loading, setLoading] = React.useState(true);
-	const [error, setError] = React.useState(false);
+	const [vans, setVans] = useState<Van[]>([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(false);
 
 	const typeFilter = searchParams.get("type");
 
-	const fetchVans = React.useCallback(async () => {
+	const fetchVans = useCallback(async () => {
 		setLoading(true);
 		setError(false);
 
@@ -34,7 +34,7 @@ export default function Vans() {
 		}
 	}, []);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		fetchVans();
 	}, [fetchVans]);
 
