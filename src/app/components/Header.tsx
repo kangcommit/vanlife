@@ -2,14 +2,8 @@ import { RxAvatar } from "react-icons/rx";
 import { Link, useNavigate } from "react-router";
 import { isSignedIn, signOut } from "@/modules/auth/utils/session";
 import { Nav } from "@/shared/components/Nav";
-import type { NavItem } from "@/shared/utils/types";
+import { headerNavigation } from "../routes/navigation";
 import { paths } from "../routes/paths";
-
-const headerLinks: NavItem[] = [
-	{ to: paths.host, label: "Host" },
-	{ to: paths.about, label: "About" },
-	{ to: paths.vans, label: "Vans" },
-];
 
 export default function Header() {
 	const navigate = useNavigate();
@@ -28,7 +22,7 @@ export default function Header() {
 				#VanLife
 			</Link>
 			<div className="flex gap-6.5">
-				<Nav links={headerLinks} ariaLabel="Primary navigation" />
+				<Nav links={headerNavigation} ariaLabel="Primary navigation" />
 				{isSignedIn() ? (
 					<button
 						type="button"

@@ -1,18 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router";
-import { paths } from "@/app/routes/paths";
+import { hostVanDetailNavigation } from "@/app/routes/navigation";
 import { BackButton } from "@/shared/components/BackButton";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
 import { Nav } from "@/shared/components/Nav";
 import VanTypeBadge from "@/shared/components/VanTypeBadge";
-import type { NavItem, Van } from "@/shared/utils/types";
-
-const tabs: NavItem[] = [
-	{ to: ".", label: "Details", end: true },
-	{ to: paths.hostVanPricing, label: "Pricing" },
-	{ to: paths.hostVanPhotos, label: "Photos" },
-];
+import type { Van } from "@/shared/utils/types";
 
 export default function HostVanDetailPage() {
 	const params = useParams();
@@ -77,7 +71,7 @@ export default function HostVanDetailPage() {
 					</div>
 
 					<Nav
-						links={tabs}
+						links={hostVanDetailNavigation}
 						className="mb-7"
 						ariaLabel="Van detail navigation"
 					/>
