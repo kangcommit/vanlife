@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router";
+import { EmptyState } from "@/shared/components/EmptyState";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
 import { useVans } from "@/shared/domain/vans/hooks/useVans";
@@ -58,16 +59,27 @@ export default function Vans() {
 				)}
 			</div>
 
-			<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-				{displayedVans.map((van) => (
-					<VanCard
-						key={van.id}
-						van={van}
-						search={search ? `?${search}` : ""}
-						type={typeFilter}
-					/>
-				))}
-			</div>
+			{displayedVans.length > 0 ? (
+				<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+					{displayedVans.map((van) => (
+						<VanCard
+							key={van.id}
+							van={van}
+							search={search ? `?${search}` : ""}
+							type={typeFilter}
+						/>
+					))}
+				</div>
+			) : (
+				<EmptyState
+					title={typeFilter ? `No ${typeFilter} vans found` : "No vans found"}
+					message={
+						typeFilter
+							? "There are no vans matching this filter. Clear the filter to browse all available vans."
+							: "There are no vans available right now. Please check back soon."
+					}
+				/>
+			)}
 		</section>
 	);
 }

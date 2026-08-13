@@ -1,3 +1,4 @@
+import { EmptyState } from "@/shared/components/EmptyState";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
 import { useVans } from "@/shared/domain/vans/hooks/useVans";
@@ -16,14 +17,20 @@ export default function HostVansPage() {
 		return <ErrorMessage onRetry={fetchVans} />;
 	}
 
-	if (vans) {
-		return (
-			<>
-				<h1 className="mt-14 mb-8 font-bold text-3xl text-coal">
-					Your listed vans
-				</h1>
+	return (
+		<>
+			<h1 className="mt-14 mb-8 font-bold text-3xl text-coal">
+				Your listed vans
+			</h1>
+
+			{vans.length > 0 ? (
 				<div className="flex flex-col gap-4">{vanElements}</div>
-			</>
-		);
-	}
+			) : (
+				<EmptyState
+					title="No listed vans"
+					message="You do not have any vans listed yet. Add a van to start hosting."
+				/>
+			)}
+		</>
+	);
 }
