@@ -1,52 +1,49 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import AuthRequired from "./components/AuthRequired";
-import GuestOnly from "./components/GuestOnly";
-import Layout from "./components/Layout";
+import AuthRequired from "./app/AuthRequired";
+import RootLayout from "./app/components/RootLayout";
+import AboutPage from "./app/pages/AboutPage";
+import HomePage from "./app/pages/HomePage";
+import NotFoundPage from "./app/pages/NotFoundPage";
+import SignInPage from "./modules/auth/pages/SignInPage";
 import HostLayout from "./modules/host/components/HostLayout";
-import Dashboard from "./modules/host/pages/Dashboard";
-import HostVanDetail from "./modules/host/pages/HostVanDetail";
-import HostVanInfo from "./modules/host/pages/HostVanInfo";
-import HostVanPhotos from "./modules/host/pages/HostVanPhotos";
-import HostVanPricing from "./modules/host/pages/HostVanPricing";
-import HostVans from "./modules/host/pages/HostVans";
-import Income from "./modules/host/pages/Income";
-import Reviews from "./modules/host/pages/Reviews";
-import VanDetail from "./modules/vans/pages/VanDetail";
-import Vans from "./modules/vans/pages/Vans";
-import About from "./pages/About";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
+import DashboardPage from "./modules/host/pages/DashboardPage";
+import HostVanDetailPage from "./modules/host/pages/HostVanDetailPage";
+import HostVanInfoPage from "./modules/host/pages/HostVanInfoPage";
+import HostVanPhotosPage from "./modules/host/pages/HostVanPhotosPage";
+import HostVanPricingPage from "./modules/host/pages/HostVanPricingPage";
+import HostVansPage from "./modules/host/pages/HostVansPage";
+import IncomePage from "./modules/host/pages/IncomePage";
+import ReviewsPage from "./modules/host/pages/ReviewsPage";
+import VanDetail from "./modules/vans/pages/VanDetailPage";
+import Vans from "./modules/vans/pages/VansPage";
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Layout />}>
-					<Route index element={<Home />} />
+				<Route path="/" element={<RootLayout />}>
+					<Route index element={<HomePage />} />
 
-					<Route element={<GuestOnly />}>
-						<Route path="login" element={<Login />} />
-					</Route>
-
-					<Route path="about" element={<About />} />
+					<Route path="about" element={<AboutPage />} />
 					<Route path="vans" element={<Vans />} />
 					<Route path="vans/:id" element={<VanDetail />} />
+					<Route path="sign-in" element={<SignInPage />} />
 
 					<Route element={<AuthRequired />}>
 						<Route path="host" element={<HostLayout />}>
-							<Route index element={<Dashboard />} />
-							<Route path="income" element={<Income />} />
-							<Route path="vans" element={<HostVans />} />
-							<Route path="vans/:id" element={<HostVanDetail />}>
-								<Route index element={<HostVanInfo />} />
-								<Route path="pricing" element={<HostVanPricing />} />
-								<Route path="photos" element={<HostVanPhotos />} />
+							<Route index element={<DashboardPage />} />
+							<Route path="income" element={<IncomePage />} />
+							<Route path="reviews" element={<ReviewsPage />} />
+							<Route path="vans" element={<HostVansPage />} />
+							<Route path="vans/:id" element={<HostVanDetailPage />}>
+								<Route index element={<HostVanInfoPage />} />
+								<Route path="pricing" element={<HostVanPricingPage />} />
+								<Route path="photos" element={<HostVanPhotosPage />} />
 							</Route>
-							<Route path="reviews" element={<Reviews />} />
 						</Route>
 					</Route>
-					<Route path="*" element={<NotFound />} />
+
+					<Route path="*" element={<NotFoundPage />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

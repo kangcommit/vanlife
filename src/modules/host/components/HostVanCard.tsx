@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import type { Van } from "../../../utils/types";
+import type { Van } from "../../../shared/utils/types";
 
 interface HostVanCardProps {
 	van: Van;
