@@ -32,7 +32,6 @@ export default function SignInPage() {
 					autoComplete="email"
 					placeholder="Email address"
 					value={signInFormData.email}
-					className="rounded-t-md"
 					required
 				/>
 
@@ -46,7 +45,6 @@ export default function SignInPage() {
 					onChange={handleChange}
 					placeholder="Password"
 					value={signInFormData.password}
-					className="rounded-b-md"
 					required
 				/>
 
