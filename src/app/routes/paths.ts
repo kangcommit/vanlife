@@ -4,14 +4,16 @@ export const paths = {
 	about: "about",
 	signIn: "sign-in",
 	vans: "vans",
-	vanDetail: "vans/:id",
+	vansDetail: "vans/:id",
 
 	// Host
 	host: "host",
-	hostIncome: "income",
-	hostReviews: "reviews",
+	hostVans: "vans",
+	hostVansDetail: "vans/:id",
 	hostVanPricing: "pricing",
 	hostVanPhotos: "photos",
+	hostIncome: "income",
+	hostReviews: "reviews",
 
 	// Fallback
 	notFound: "*",
