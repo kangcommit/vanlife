@@ -1,5 +1,6 @@
 import { RxAvatar } from "react-icons/rx";
 import { Link, useNavigate } from "react-router";
+import { authRoutePaths } from "@/modules/auth/routePaths";
 import { isSignedIn, signOut } from "@/modules/auth/utils/session";
 import { Nav } from "@/shared/components/Nav";
 import { headerNavigation } from "../routes/navigation";
@@ -32,7 +33,7 @@ export default function Header() {
 						Sign out
 					</button>
 				) : (
-					<Link to={paths.signIn} aria-label="Sign in">
+					<Link to={authRoutePaths.signIn} aria-label="Sign in">
 						<RxAvatar className="size-6" />
 					</Link>
 				)}
