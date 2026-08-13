@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
-import ErrorMessage from "../../../shared/components/ErrorMessage";
-import LoadingSpinner from "../../../shared/components/LoadingSpinner";
-import type { Van, VansResponse, VanType } from "../../../shared/utils/types";
+import ErrorMessage from "@/shared/components/ErrorMessage";
+import LoadingSpinner from "@/shared/components/LoadingSpinner";
+import type { Van, VansResponse, VanType } from "@/shared/utils/types";
 import VanCard from "../components/VanCard";
 import VanTypeFilter from "../components/VanTypeFilter";
 

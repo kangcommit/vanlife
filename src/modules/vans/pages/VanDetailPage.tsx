@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
-import { BackButton } from "../../../shared/components/BackButton";
-import ErrorMessage from "../../../shared/components/ErrorMessage";
-import LoadingSpinner from "../../../shared/components/LoadingSpinner";
-import VanTypeBadge from "../../../shared/components/VanTypeBadge";
-import type { Van } from "../../../shared/utils/types";
+import { BackButton } from "@/shared/components/BackButton";
+import ErrorMessage from "@/shared/components/ErrorMessage";
+import LoadingSpinner from "@/shared/components/LoadingSpinner";
+import VanTypeBadge from "@/shared/components/VanTypeBadge";
+import type { Van } from "@/shared/utils/types";
 
 export default function VanDetail() {
 	const params = useParams();

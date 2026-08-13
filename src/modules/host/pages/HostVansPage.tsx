@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import ErrorMessage from "../../../shared/components/ErrorMessage";
-import LoadingSpinner from "../../../shared/components/LoadingSpinner";
-import type { Van, VansResponse } from "../../../shared/utils/types";
+import ErrorMessage from "@/shared/components/ErrorMessage";
+import LoadingSpinner from "@/shared/components/LoadingSpinner";
+import type { Van, VansResponse } from "@/shared/utils/types";
 import HostVanCard from "../components/HostVanCard";
 
 export default function HostVansPage() {

@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import HomeHero from "../../assets/images/home-hero.png";
+import HomeHero from "@/assets/images/home-hero.png";
 
 export default function HomePage() {
 	return (

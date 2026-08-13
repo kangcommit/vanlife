@@ -1,7 +1,7 @@
 import { type ChangeEvent, type SubmitEvent, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { Alert } from "../../../shared/components/Alert";
-import { Input } from "../../../shared/components/Input";
+import { Alert } from "@/shared/components/Alert";
+import { Input } from "@/shared/components/Input";
 import { signInUser } from "../services/signIn";
 import { signIn } from "../utils/session";
 

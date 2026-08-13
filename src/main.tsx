@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
-import "./shared/api/mockServer.ts";
+import App from "./App";
+import "./shared/api/mockServer";
 
 const root = document.getElementById("root");
 if (!root) throw new Error("Root element not found");

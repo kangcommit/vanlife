@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from "react-router";
-import { isSignedIn } from "../modules/auth/utils/session";
+import { isSignedIn } from "@/modules/auth/utils/session";
 
 export default function AuthRequired() {
 	const location = useLocation();

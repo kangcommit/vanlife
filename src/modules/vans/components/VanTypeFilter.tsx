@@ -1,6 +1,6 @@
 import { tv } from "tailwind-variants";
-import { capitalize } from "../../../shared/utils/format";
-import type { VanType } from "../../../shared/utils/types";
+import { capitalize } from "@/shared/utils/format";
+import type { VanType } from "@/shared/utils/types";
 
 const vanTypeButton = tv({
 	base: "h-9 w-26 cursor-pointer rounded-md bg-peach text-base transition-colors",

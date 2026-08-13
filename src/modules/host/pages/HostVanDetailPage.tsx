@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router";
-import { BackButton } from "../../../shared/components/BackButton";
-import ErrorMessage from "../../../shared/components/ErrorMessage";
-import LoadingSpinner from "../../../shared/components/LoadingSpinner";
-import { Nav } from "../../../shared/components/Nav";
-import VanTypeBadge from "../../../shared/components/VanTypeBadge";
-import type { NavItem, Van } from "../../../shared/utils/types";
+import { BackButton } from "@/shared/components/BackButton";
+import ErrorMessage from "@/shared/components/ErrorMessage";
+import LoadingSpinner from "@/shared/components/LoadingSpinner";
+import { Nav } from "@/shared/components/Nav";
+import VanTypeBadge from "@/shared/components/VanTypeBadge";
+import type { NavItem, Van } from "@/shared/utils/types";
 
 const tabs: NavItem[] = [
 	{ to: ".", label: "Details", end: true },

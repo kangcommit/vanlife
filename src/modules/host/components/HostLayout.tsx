@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
-import { Nav } from "../../../shared/components/Nav";
-import type { NavItem } from "../../../shared/utils/types";
+import { Nav } from "@/shared/components/Nav";
+import type { NavItem } from "@/shared/utils/types";
 
 const hostLinks: NavItem[] = [
 	{ to: ".", label: "Dashboard", end: true },

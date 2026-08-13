@@ -1,8 +1,8 @@
 import { RxAvatar } from "react-icons/rx";
 import { Link, useNavigate } from "react-router";
-import { isSignedIn, signOut } from "../../modules/auth/utils/session";
-import { Nav } from "../../shared/components/Nav";
-import type { NavItem } from "../../shared/utils/types";
+import { isSignedIn, signOut } from "@/modules/auth/utils/session";
+import { Nav } from "@/shared/components/Nav";
+import type { NavItem } from "@/shared/utils/types";
 
 const headerLinks: NavItem[] = [
 	{ to: "host", label: "Host" },
