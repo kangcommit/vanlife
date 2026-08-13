@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
-import { hostNavigation } from "@/app/routes/navigation";
 import { Nav } from "@/shared/components/Nav";
+import { hostNavigation } from "../navigation";
 
 export default function HostLayout() {
 	return (

@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import AboutHero from "@/assets/images/about-hero.png";
-import { paths } from "../routes/paths";
+import { vansRoutePaths } from "@/modules/vans/routePaths";
 
 export default function AboutPage() {
 	return (
@@ -31,7 +31,7 @@ export default function AboutPage() {
 					Your destination is waiting. Your van is ready.
 				</h2>
 				<Link
-					to={paths.vans}
+					to={vansRoutePaths.root}
 					className="rounded-xl bg-coal px-5.5 py-3 font-bold text-base text-white"
 				>
 					Explore our vans

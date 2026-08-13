@@ -1,6 +1,6 @@
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
-import { useVans } from "@/shared/hooks/useVans";
+import { useVans } from "@/shared/domain/vans/hooks/useVans";
 import HostVanCard from "../components/HostVanCard";
 
 export default function HostVansPage() {

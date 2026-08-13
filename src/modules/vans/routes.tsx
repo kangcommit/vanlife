@@ -1,11 +1,11 @@
 import { Route } from "react-router";
-import { paths } from "@/app/routes/paths";
 import VanDetail from "./pages/VanDetailPage";
 import Vans from "./pages/VansPage";
+import { vansRoutePaths } from "./routePaths";
 
 export const vansRoutes = (
 	<>
-		<Route path={paths.vans} element={<Vans />} />
-		<Route path={paths.vansDetail} element={<VanDetail />} />
+		<Route path={vansRoutePaths.root} element={<Vans />} />
+		<Route path={vansRoutePaths.detail} element={<VanDetail />} />
 	</>
 );

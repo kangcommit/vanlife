@@ -2,8 +2,8 @@ import { useLocation, useParams } from "react-router";
 import { BackButton } from "@/shared/components/BackButton";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
-import VanTypeBadge from "@/shared/components/VanTypeBadge";
-import { useVan } from "@/shared/hooks/useVan";
+import VanTypeBadge from "@/shared/domain/vans/components/VanTypeBadge";
+import { useVan } from "@/shared/domain/vans/hooks/useVan";
 
 export default function VanDetail() {
 	const params = useParams();

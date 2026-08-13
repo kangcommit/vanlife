@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import type { Van } from "@/shared/utils/types";
+import type { Van } from "../types";
 
 interface VanResponse {
 	vans: Van;

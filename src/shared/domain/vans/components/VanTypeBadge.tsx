@@ -1,6 +1,6 @@
 import { tv } from "tailwind-variants";
-import { capitalize } from "../utils/format";
-import type { VanType } from "../utils/types";
+import { capitalize } from "@/shared/utils/format";
+import type { VanType } from "../types";
 
 const vanTypeBadge = tv({
 	base: "rounded-md px-3 py-1 font-semibold text-base text-peach",

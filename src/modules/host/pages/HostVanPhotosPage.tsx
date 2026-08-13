@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router";
-import type { Van } from "@/shared/utils/types";
+import type { Van } from "@/shared/domain/vans/types";
 
 export default function HostVanPhotosPage() {
 	const van = useOutletContext<Van>();

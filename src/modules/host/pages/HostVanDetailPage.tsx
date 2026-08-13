@@ -1,11 +1,11 @@
 import { Outlet, useParams } from "react-router";
-import { hostVanDetailNavigation } from "@/app/routes/navigation";
 import { BackButton } from "@/shared/components/BackButton";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
 import { Nav } from "@/shared/components/Nav";
-import VanTypeBadge from "@/shared/components/VanTypeBadge";
-import { useVan } from "@/shared/hooks/useVan";
+import VanTypeBadge from "@/shared/domain/vans/components/VanTypeBadge";
+import { useVan } from "@/shared/domain/vans/hooks/useVan";
+import { hostVanDetailNavigation } from "../navigation";
 
 export default function HostVanDetailPage() {
 	const params = useParams();

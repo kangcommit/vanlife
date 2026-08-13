@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import type { Van, VansResponse } from "@/shared/utils/types";
+import type { Van, VansResponse } from "../types";
 
 export function useVans(url: string) {
 	const [vans, setVans] = useState<Van[]>([]);

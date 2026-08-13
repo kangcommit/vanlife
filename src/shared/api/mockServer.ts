@@ -1,7 +1,14 @@
 import { createServer, Model, type Registry, Response } from "miragejs";
 import type { ModelDefinition } from "miragejs/-types";
 import type Schema from "miragejs/orm/schema";
-import type { User, Van } from "../utils/types";
+import type { Van } from "@/shared/domain/vans/types";
+
+interface User {
+	id: string;
+	email: string;
+	password: string;
+	name: string;
+}
 
 type AppRegistry = Registry<
 	{

@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router";
+import AuthRequired from "@/app/AuthRequired";
 import SignInPage from "@/modules/auth/pages/SignInPage";
 import { hostRoutes } from "@/modules/host/routes";
 import { vansRoutes } from "@/modules/vans/routes";
@@ -21,7 +22,7 @@ export function AppRoutes() {
 				</Route>
 
 				{vansRoutes}
-				{hostRoutes}
+				<Route element={<AuthRequired />}>{hostRoutes}</Route>
 
 				<Route path={paths.notFound} element={<NotFoundPage />} />
 			</Route>

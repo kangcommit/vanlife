@@ -1,8 +1,9 @@
 import { type ChangeEvent, type SubmitEvent, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { paths } from "@/app/routes/paths";
 import { signInUser } from "../services/signIn";
 import { signIn } from "../utils/session";
+
+const fallbackRedirectPath = "/host";
 
 export function useSignInForm() {
 	const [signInFormData, setSignInFormData] = useState({
@@ -16,7 +17,7 @@ export function useSignInForm() {
 	const navigate = useNavigate();
 
 	const message = location.state?.message;
-	const from = location.state?.from ?? paths.host;
+	const from = location.state?.from ?? fallbackRedirectPath;
 
 	function handleChange(e: ChangeEvent<HTMLInputElement>) {
 		const { name, value } = e.target;
