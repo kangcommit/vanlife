@@ -8,11 +8,7 @@ interface BackButtonProps {
 	className?: string;
 }
 
-export function BackButton({
-	text = "Back to all vans",
-	to,
-	className,
-}: BackButtonProps) {
+export function BackButton({ text = "Back", to, className }: BackButtonProps) {
 	return (
 		<Link
 			to={to}
