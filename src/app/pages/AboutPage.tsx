@@ -30,7 +30,7 @@ export default function AboutPage() {
 					Your destination is waiting. Your van is ready.
 				</h2>
 				<Link
-					to="/vans"
+					to="vans"
 					className="rounded-xl bg-coal px-5.5 py-3 font-bold text-base text-white"
 				>
 					Explore our vans

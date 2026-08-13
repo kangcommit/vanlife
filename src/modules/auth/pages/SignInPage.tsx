@@ -17,7 +17,7 @@ export default function SignInPage() {
 	const navigate = useNavigate();
 
 	const message = location.state?.message;
-	const from = location.state?.from ?? "/host";
+	const from = location.state?.from ?? "host";
 
 	function handleChange(e: ChangeEvent<HTMLInputElement>) {
 		const { name, value } = e.target;

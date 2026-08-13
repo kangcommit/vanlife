@@ -8,7 +8,7 @@ export default function AuthRequired() {
 	if (!isSignedIn()) {
 		return (
 			<Navigate
-				to="/sign-in"
+				to="sign-in"
 				state={{
 					message: "You must sign in first",
 					from: pathname + search + hash,
