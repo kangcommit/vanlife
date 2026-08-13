@@ -30,7 +30,9 @@ function App() {
 					<Route path={paths.vans} element={<Vans />} />
 					<Route path={paths.vanDetail} element={<VanDetail />} />
 
-					<Route path={paths.signIn} element={<SignInPage />} />
+					<Route element={<GuestOnly />}>
+						<Route path={paths.signIn} element={<SignInPage />} />
+					</Route>
 
 					<Route element={<AuthRequired />}>
 						<Route path={paths.host} element={<HostLayout />}>
