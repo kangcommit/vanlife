@@ -1,50 +1,16 @@
-import { type ChangeEvent, type SubmitEvent, useState } from "react";
-import { useLocation, useNavigate } from "react-router";
-import { paths } from "@/app/routes/paths";
 import { Alert } from "@/shared/components/Alert";
 import { Input } from "@/shared/components/Input";
-import { signInUser } from "../services/signIn";
-import { signIn } from "../utils/session";
+import { useSignInForm } from "../hooks/useSignInForm";
 
 export default function SignInPage() {
-	const [signInFormData, setSignInFormData] = useState({
-		email: "",
-		password: "",
-	});
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState<string | null>(null);
-
-	const location = useLocation();
-	const navigate = useNavigate();
-
-	const message = location.state?.message;
-	const from = location.state?.from ?? paths.host;
-
-	function handleChange(e: ChangeEvent<HTMLInputElement>) {
-		const { name, value } = e.target;
-		setSignInFormData((prev) => ({
-			...prev,
-			[name]: value,
-		}));
-	}
-
-	async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
-		e.preventDefault();
-
-		setLoading(true);
-
-		try {
-			await signInUser(signInFormData);
-
-			setError(null);
-			signIn();
-			navigate(from, { replace: true });
-		} catch (err) {
-			setError(err instanceof Error ? err.message : "Something went wrong");
-		} finally {
-			setLoading(false);
-		}
-	}
+	const {
+		signInFormData,
+		loading,
+		error,
+		message,
+		handleChange,
+		handleSubmit,
+	} = useSignInForm();
 
 	return (
 		<div className="mx-6.5 flex flex-col items-center gap-12">

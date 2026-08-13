@@ -1,45 +1,17 @@
-import { useCallback, useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
 import { BackButton } from "@/shared/components/BackButton";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
 import VanTypeBadge from "@/shared/components/VanTypeBadge";
-import type { Van } from "@/shared/utils/types";
+import { useVan } from "@/shared/hooks/useVan";
 
 export default function VanDetail() {
 	const params = useParams();
 	const location = useLocation();
-
-	const [van, setVan] = useState<Van | null>(null);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(false);
+	const { van, loading, error, fetchVan } = useVan(`/api/vans/${params.id}`);
 
 	const search = location.state?.search || "";
 	const type = location.state?.type || "all";
-
-	const fetchVan = useCallback(async () => {
-		setLoading(true);
-		setError(false);
-
-		try {
-			const response = await fetch(`/api/vans/${params.id}`);
-
-			if (!response.ok) {
-				throw new Error(`Response status: ${response.status}`);
-			}
-
-			const data = await response.json();
-			setVan(data.vans);
-		} catch (_) {
-			setError(true);
-		} finally {
-			setLoading(false);
-		}
-	}, [params.id]);
-
-	useEffect(() => {
-		fetchVan();
-	}, [fetchVan]);
 
 	if (loading) {
 		return <LoadingSpinner />;

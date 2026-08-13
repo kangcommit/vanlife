@@ -1,37 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
-import type { Van, VansResponse } from "@/shared/utils/types";
+import { useVans } from "@/shared/hooks/useVans";
 import HostVanCard from "../components/HostVanCard";
 
 export default function HostVansPage() {
-	const [vans, setVans] = useState<Van[]>([]);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(false);
-
-	const fetchVans = useCallback(async () => {
-		setLoading(true);
-		setError(false);
-
-		try {
-			const response = await fetch("/api/host/vans");
-
-			if (!response.ok) {
-				throw new Error(`Response status: ${response.status}`);
-			}
-
-			const data: VansResponse = await response.json();
-			setVans(data.vans);
-		} catch (_) {
-			setError(true);
-		} finally {
-			setLoading(false);
-		}
-	}, []);
-
-	useEffect(() => {
-		fetchVans();
-	}, [fetchVans]);
+	const { vans, loading, error, fetchVans } = useVans("/api/host/vans");
 
 	const vanElements = vans.map((van) => <HostVanCard key={van.id} van={van} />);
 

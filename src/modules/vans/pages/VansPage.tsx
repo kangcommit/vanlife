@@ -1,16 +1,14 @@
-import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
-import type { Van, VansResponse, VanType } from "@/shared/utils/types";
+import { useVans } from "@/shared/hooks/useVans";
+import type { VanType } from "@/shared/utils/types";
 import VanCard from "../components/VanCard";
 import VanTypeFilter from "../components/VanTypeFilter";
 
 export default function Vans() {
 	const [searchParams, setSearchParams] = useSearchParams();
-	const [vans, setVans] = useState<Van[]>([]);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(false);
+	const { vans, loading, error, fetchVans } = useVans("/api/vans");
 
 	const typeFilter = searchParams.get("type");
 
@@ -29,30 +27,6 @@ export default function Vans() {
 	function handleClearFilter() {
 		setSearchParams({});
 	}
-
-	const fetchVans = useCallback(async () => {
-		setLoading(true);
-		setError(false);
-
-		try {
-			const response = await fetch("/api/vans");
-
-			if (!response.ok) {
-				throw new Error(`Response status: ${response.status}`);
-			}
-
-			const data: VansResponse = await response.json();
-			setVans(data.vans);
-		} catch (_) {
-			setError(true);
-		} finally {
-			setLoading(false);
-		}
-	}, []);
-
-	useEffect(() => {
-		fetchVans();
-	}, [fetchVans]);
 
 	if (loading) {
 		return <LoadingSpinner />;
