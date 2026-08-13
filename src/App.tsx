@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import AuthRequired from "./app/AuthRequired";
 import RootLayout from "./app/components/RootLayout";
+import GuestOnly from "./app/GuestOnly";
 import AboutPage from "./app/pages/AboutPage";
 import HomePage from "./app/pages/HomePage";
 import NotFoundPage from "./app/pages/NotFoundPage";
+import { paths } from "./app/routes/paths";
 import SignInPage from "./modules/auth/pages/SignInPage";
 import HostLayout from "./modules/host/components/HostLayout";
 import DashboardPage from "./modules/host/pages/DashboardPage";
@@ -21,29 +23,36 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<RootLayout />}>
+				<Route path={paths.home} element={<RootLayout />}>
 					<Route index element={<HomePage />} />
 
-					<Route path="about" element={<AboutPage />} />
-					<Route path="vans" element={<Vans />} />
-					<Route path="vans/:id" element={<VanDetail />} />
-					<Route path="sign-in" element={<SignInPage />} />
+					<Route path={paths.about} element={<AboutPage />} />
+					<Route path={paths.vans} element={<Vans />} />
+					<Route path={paths.vanDetail} element={<VanDetail />} />
+
+					<Route path={paths.signIn} element={<SignInPage />} />
 
 					<Route element={<AuthRequired />}>
-						<Route path="host" element={<HostLayout />}>
+						<Route path={paths.host} element={<HostLayout />}>
 							<Route index element={<DashboardPage />} />
-							<Route path="income" element={<IncomePage />} />
-							<Route path="reviews" element={<ReviewsPage />} />
-							<Route path="vans" element={<HostVansPage />} />
-							<Route path="vans/:id" element={<HostVanDetailPage />}>
+							<Route path={paths.hostIncome} element={<IncomePage />} />
+							<Route path={paths.hostReviews} element={<ReviewsPage />} />
+							<Route path={paths.vans} element={<HostVansPage />} />
+							<Route path={paths.vanDetail} element={<HostVanDetailPage />}>
 								<Route index element={<HostVanInfoPage />} />
-								<Route path="pricing" element={<HostVanPricingPage />} />
-								<Route path="photos" element={<HostVanPhotosPage />} />
+								<Route
+									path={paths.hostVanPricing}
+									element={<HostVanPricingPage />}
+								/>
+								<Route
+									path={paths.hostVanPhotos}
+									element={<HostVanPhotosPage />}
+								/>
 							</Route>
 						</Route>
 					</Route>
 
-					<Route path="*" element={<NotFoundPage />} />
+					<Route path={paths.notFound} element={<NotFoundPage />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

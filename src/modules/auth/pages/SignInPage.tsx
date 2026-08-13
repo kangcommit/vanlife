@@ -1,5 +1,6 @@
 import { type ChangeEvent, type SubmitEvent, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
+import { paths } from "@/app/routes/paths";
 import { Alert } from "@/shared/components/Alert";
 import { Input } from "@/shared/components/Input";
 import { signInUser } from "../services/signIn";
@@ -17,7 +18,7 @@ export default function SignInPage() {
 	const navigate = useNavigate();
 
 	const message = location.state?.message;
-	const from = location.state?.from ?? "host";
+	const from = location.state?.from ?? paths.host;
 
 	function handleChange(e: ChangeEvent<HTMLInputElement>) {
 		const { name, value } = e.target;

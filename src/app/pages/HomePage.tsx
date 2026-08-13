@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import HomeHero from "@/assets/images/home-hero.png";
+import { paths } from "../routes/paths";
 
 export default function HomePage() {
 	return (
@@ -20,7 +21,7 @@ export default function HomePage() {
 			</p>
 
 			<Link
-				to="vans"
+				to={paths.vans}
 				className="w-full rounded-sm bg-orange py-2.5 text-center font-bold text-base text-white transition-colors hover:bg-orange-dark sm:w-fit sm:min-w-64 sm:px-8"
 			>
 				Find your van

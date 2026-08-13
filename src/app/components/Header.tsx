@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router";
 import { isSignedIn, signOut } from "@/modules/auth/utils/session";
 import { Nav } from "@/shared/components/Nav";
 import type { NavItem } from "@/shared/utils/types";
+import { paths } from "../routes/paths";
 
 const headerLinks: NavItem[] = [
-	{ to: "host", label: "Host" },
-	{ to: "about", label: "About" },
-	{ to: "vans", label: "Vans" },
+	{ to: paths.host, label: "Host" },
+	{ to: paths.about, label: "About" },
+	{ to: paths.vans, label: "Vans" },
 ];
 
 export default function Header() {
@@ -15,13 +16,13 @@ export default function Header() {
 
 	function handleSignOut() {
 		signOut();
-		navigate("/", { replace: true });
+		navigate(paths.home, { replace: true });
 	}
 
 	return (
 		<header className="flex items-center justify-between bg-sand px-6.5 py-9">
 			<Link
-				to="/"
+				to={paths.home}
 				className="font-black text-2xl text-black uppercase hover:underline"
 			>
 				#VanLife
@@ -37,7 +38,7 @@ export default function Header() {
 						Sign out
 					</button>
 				) : (
-					<Link to="sign-in" aria-label="Sign in">
+					<Link to={paths.signIn} aria-label="Sign in">
 						<RxAvatar className="size-6" />
 					</Link>
 				)}

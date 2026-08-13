@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { paths } from "../routes/paths";
 
 export default function NotFoundPage() {
 	return (
@@ -8,7 +9,7 @@ export default function NotFoundPage() {
 			</h1>
 
 			<Link
-				to="/"
+				to={paths.home}
 				className="w-full max-w-xs rounded-md bg-coal py-3.5 font-bold text-lg text-white"
 			>
 				Return to home

@@ -1,12 +1,13 @@
 import { Outlet } from "react-router";
+import { paths } from "@/app/routes/paths";
 import { Nav } from "@/shared/components/Nav";
 import type { NavItem } from "@/shared/utils/types";
 
 const hostLinks: NavItem[] = [
 	{ to: ".", label: "Dashboard", end: true },
-	{ to: "income", label: "Income" },
-	{ to: "vans", label: "Vans" },
-	{ to: "reviews", label: "Reviews" },
+	{ to: paths.hostIncome, label: "Income" },
+	{ to: paths.vans, label: "Vans" },
+	{ to: paths.hostReviews, label: "Reviews" },
 ];
 
 export default function HostLayout() {

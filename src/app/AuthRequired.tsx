@@ -1,5 +1,6 @@
 import { Navigate, Outlet, useLocation } from "react-router";
 import { isSignedIn } from "@/modules/auth/utils/session";
+import { paths } from "./routes/paths";
 
 export default function AuthRequired() {
 	const location = useLocation();
@@ -8,7 +9,7 @@ export default function AuthRequired() {
 	if (!isSignedIn()) {
 		return (
 			<Navigate
-				to="sign-in"
+				to={paths.signIn}
 				state={{
 					message: "You must sign in first",
 					from: pathname + search + hash,

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router";
+import { paths } from "@/app/routes/paths";
 import { BackButton } from "@/shared/components/BackButton";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
@@ -9,8 +10,8 @@ import type { NavItem, Van } from "@/shared/utils/types";
 
 const tabs: NavItem[] = [
 	{ to: ".", label: "Details", end: true },
-	{ to: "pricing", label: "Pricing" },
-	{ to: "photos", label: "Photos" },
+	{ to: paths.hostVanPricing, label: "Pricing" },
+	{ to: paths.hostVanPhotos, label: "Photos" },
 ];
 
 export default function HostVanDetailPage() {
