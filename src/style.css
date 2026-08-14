@@ -1,32 +1,55 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap");
 
 @import "tailwindcss";
 
 @theme {
-	--color-sand: #fff7ed;
+	--font-sans: "Outfit", sans-serif;
 
-	--color-coal: #161616;
-	--color-charcoal: #201f1d;
-	--color-graphite: #252525;
-	--color-slate: #4d4d4d;
-	--color-gray: #858585;
-	--color-ash: #aaaaaa;
-	--color-smoke: #d1d5db;
+	--color-canvas: #f8f3eb;
+	--color-surface: #fffaf3;
+	--color-panel: #efe6d8;
+	--color-line: #ded3c4;
 
-	--color-orange: #ff8c38;
-	--color-orange-dark: #e57d2f;
-	--color-orange-hover: #e67c2f;
-	--color-orange-light: #ffcc8d;
+	--color-ink: #1e1b16;
+	--color-muted: #6f675c;
+	--color-soft: #a89d90;
 
-	--color-peach: #ffead0;
-	--color-terracotta: #e17654;
-	--color-teal: #115e59;
+	--color-clay: #c86f45;
+	--color-clay-dark: #9f5534;
+	--color-sage: #4f6f64;
+	--color-forest: #263f38;
 }
 
 html {
-	font-family: "Inter", sans-serif;
+	scroll-behavior: smooth;
+	font-family: var(--font-sans);
 }
 
 body {
-	background-color: var(--color-sand);
+	background-color: var(--color-canvas);
+	color: var(--color-ink);
+	text-rendering: optimizeLegibility;
+}
+
+::selection {
+	background-color: var(--color-clay);
+	color: var(--color-surface);
+}
+
+:focus-visible:not(input):not(textarea) {
+	outline: 2px solid var(--color-clay);
+	outline-offset: 3px;
+}
+
+button,
+[role="button"],
+summary,
+select,
+label[for],
+input[type="checkbox"],
+input[type="radio"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+	cursor: pointer;
 }
