@@ -1,3 +1,4 @@
+import { apiPaths } from "@/shared/api/endpoints";
 import { EmptyState } from "@/shared/components/EmptyState";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
@@ -6,7 +7,7 @@ import { useVans } from "@/shared/domain/vans/hooks/useVans";
 import HostVanCard from "../components/HostVanCard";
 
 export default function HostVansPage() {
-	const { vans, loading, error, fetchVans } = useVans("/api/host/vans");
+	const { vans, loading, error, fetchVans } = useVans(apiPaths.host.vans.list);
 
 	const vanElements = vans.map((van) => <HostVanCard key={van.id} van={van} />);
 

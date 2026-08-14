@@ -1,4 +1,5 @@
 import { useLocation, useParams } from "react-router";
+import { apiPaths } from "@/shared/api/endpoints";
 import { BackButton } from "@/shared/components/BackButton";
 import { EmptyState } from "@/shared/components/EmptyState";
 import ErrorMessage from "@/shared/components/ErrorMessage";
@@ -7,9 +8,11 @@ import VanTypeBadge from "@/shared/domain/vans/components/VanTypeBadge";
 import { useVan } from "@/shared/domain/vans/hooks/useVan";
 
 export default function VanDetail() {
-	const params = useParams();
+	const { id } = useParams();
 	const location = useLocation();
-	const { van, loading, error, fetchVan } = useVan(`/api/vans/${params.id}`);
+	const { van, loading, error, fetchVan } = useVan(
+		id ? apiPaths.vans.detail(id) : null,
+	);
 
 	const search = location.state?.search || "";
 	const type = location.state?.type || "all";

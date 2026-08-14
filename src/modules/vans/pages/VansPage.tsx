@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router";
+import { apiPaths } from "@/shared/api/endpoints";
 import { EmptyState } from "@/shared/components/EmptyState";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
@@ -10,7 +11,7 @@ import VanTypeFilter from "../components/VanTypeFilter";
 
 export default function Vans() {
 	const [searchParams, setSearchParams] = useSearchParams();
-	const { vans, loading, error, fetchVans } = useVans("/api/vans");
+	const { vans, loading, error, fetchVans } = useVans(apiPaths.vans.list);
 
 	const typeFilter = searchParams.get("type");
 

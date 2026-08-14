@@ -1,15 +1,33 @@
+export interface VansResponse {
+	data: Van[];
+	meta: Meta;
+}
+
+export interface VanResponse {
+	data: VanDetail;
+}
+
 export interface Van {
 	id: string;
 	name: string;
 	price: number;
-	description: string;
 	imageUrl: string;
-	type: VanType;
-	hostId: string;
+	type: string;
+	location: string;
+	rating: number;
 }
 
-export interface VansResponse {
-	vans: Van[];
+export interface VanDetail extends Van {
+	description: string;
+	sleeps: number;
+	amenities: string[];
 }
 
-export type VanType = "simple" | "luxury" | "rugged";
+export interface Meta {
+	page: number;
+	limit: number;
+	total: number;
+	totalPages: number;
+}
+
+export type VanType = Van["type"];

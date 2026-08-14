@@ -1,11 +1,12 @@
 import { useParams } from "react-router";
+import { apiPaths } from "@/shared/api/endpoints";
 import { BackButton } from "@/shared/components/BackButton";
 import { EmptyState } from "@/shared/components/EmptyState";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
 import VanTypeBadge from "@/shared/domain/vans/components/VanTypeBadge";
 import { useVan } from "@/shared/domain/vans/hooks/useVan";
-import type { Van } from "@/shared/domain/vans/types";
+import type { VanDetail } from "@/shared/domain/vans/types";
 
 interface InfoRowProps {
 	label: string;
@@ -21,7 +22,7 @@ function InfoRow({ label, value }: InfoRowProps) {
 	);
 }
 
-function VanInfo({ van }: { van: Van }) {
+function VanInfo({ van }: { van: VanDetail }) {
 	return (
 		<dl className="flex flex-col gap-5">
 			<InfoRow label="Name" value={van.name} />
@@ -33,9 +34,9 @@ function VanInfo({ van }: { van: Van }) {
 }
 
 export default function HostVanDetailPage() {
-	const params = useParams();
+	const { id } = useParams();
 	const { van, loading, error, fetchVan } = useVan(
-		`/api/host/vans/${params.id}`,
+		id ? apiPaths.host.vans.detail(id) : null,
 	);
 
 	if (loading) {

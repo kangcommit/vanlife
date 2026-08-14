@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import type { Van, VansResponse } from "../types";
+import { getVans } from "../services/vanService";
+import type { Van } from "../types";
 
 export function useVans(url: string) {
 	const [vans, setVans] = useState<Van[]>([]);
@@ -11,14 +12,9 @@ export function useVans(url: string) {
 		setError(false);
 
 		try {
-			const response = await fetch(url);
+			const data = await getVans(url);
 
-			if (!response.ok) {
-				throw new Error(`Response status: ${response.status}`);
-			}
-
-			const data: VansResponse = await response.json();
-			setVans(data.vans);
+			setVans(data);
 		} catch (_) {
 			setError(true);
 		} finally {
