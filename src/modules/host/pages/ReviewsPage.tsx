@@ -1,4 +1,5 @@
 import { FaStar } from "react-icons/fa6";
+import { PageHeader } from "@/shared/components/PageHeader";
 
 const ratingRows = [
 	{ label: "5 stars", value: 86 },
@@ -48,17 +49,11 @@ function StarRating({ rating }: { rating: number }) {
 export default function ReviewsPage() {
 	return (
 		<section>
-			<div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-				<div>
-					<p className="mb-4 font-semibold text-clay text-sm uppercase tracking-widest">
-						Guest reviews
-					</p>
-					<h1 className="text-balance font-black text-4xl text-ink leading-tight md:text-5xl">
-						Reviews from recent trips.
-					</h1>
-				</div>
-				<p className="font-medium text-muted">Last 30 days</p>
-			</div>
+			<PageHeader
+				eyebrow="Guest reviews"
+				title="Reviews from recent trips."
+				aside={<p className="font-medium text-muted">Last 30 days</p>}
+			/>
 
 			<div className="grid gap-6 lg:grid-cols-3">
 				<section

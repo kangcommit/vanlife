@@ -1,5 +1,6 @@
 import { Alert } from "@/shared/components/Alert";
 import { Input } from "@/shared/components/Input";
+import { PageHeader } from "@/shared/components/PageHeader";
 import { useSignInForm } from "../hooks/useSignInForm";
 
 export default function SignInPage() {
@@ -15,14 +16,7 @@ export default function SignInPage() {
 	return (
 		<section className="mx-auto flex max-w-7xl justify-center px-6 py-16 md:py-20">
 			<div className="w-full max-w-md">
-				<div className="mb-10">
-					<p className="mb-4 font-semibold text-clay text-sm uppercase tracking-widest">
-						Host access
-					</p>
-					<h1 className="text-balance font-black text-4xl text-ink leading-tight md:text-5xl">
-						Sign in to your account.
-					</h1>
-				</div>
+				<PageHeader eyebrow="Host access" title="Sign in to your account." />
 
 				{(message || error) && (
 					<div className="mb-8">

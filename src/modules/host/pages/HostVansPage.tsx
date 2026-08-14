@@ -1,6 +1,7 @@
 import { EmptyState } from "@/shared/components/EmptyState";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
+import { PageHeader } from "@/shared/components/PageHeader";
 import { useVans } from "@/shared/domain/vans/hooks/useVans";
 import HostVanCard from "../components/HostVanCard";
 
@@ -19,14 +20,11 @@ export default function HostVansPage() {
 
 	return (
 		<>
-			<div className="mb-8 max-w-3xl">
-				<p className="mb-4 font-semibold text-clay text-sm uppercase tracking-widest">
-					Your fleet
-				</p>
-				<h1 className="text-balance font-black text-4xl text-ink leading-tight md:text-5xl">
-					Your listed vans.
-				</h1>
-			</div>
+			<PageHeader
+				eyebrow="Your fleet"
+				title="Your listed vans."
+				className="mb-8"
+			/>
 
 			{vans.length > 0 ? (
 				<div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

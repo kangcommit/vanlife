@@ -1,14 +1,12 @@
+import { PageHeader } from "@/shared/components/PageHeader";
+
 export default function DashboardPage() {
 	return (
 		<section>
-			<div className="mb-10 max-w-3xl">
-				<p className="mb-4 font-semibold text-clay text-sm uppercase tracking-widest">
-					Host dashboard
-				</p>
-				<h1 className="text-balance font-black text-4xl text-ink leading-tight md:text-5xl">
-					Welcome back. Your vans are ready for the next trip.
-				</h1>
-			</div>
+			<PageHeader
+				eyebrow="Host dashboard"
+				title="Welcome back. Your vans are ready for the next trip."
+			/>
 
 			<div className="grid gap-6 md:grid-cols-3">
 				<article className="rounded-xl bg-surface p-6 shadow-sm">

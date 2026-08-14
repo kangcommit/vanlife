@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router";
 import { EmptyState } from "@/shared/components/EmptyState";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
+import { PageHeader } from "@/shared/components/PageHeader";
 import { useVans } from "@/shared/domain/vans/hooks/useVans";
 import type { VanType } from "@/shared/domain/vans/types";
 import VanCard from "../components/VanCard";
@@ -39,14 +40,10 @@ export default function Vans() {
 
 	return (
 		<section className="mx-auto max-w-7xl px-6 py-16 md:py-20">
-			<div className="mb-10 max-w-3xl">
-				<p className="mb-4 font-semibold text-clay text-sm uppercase tracking-widest">
-					Choose your route
-				</p>
-				<h1 className="text-balance font-black text-4xl text-ink leading-tight md:text-5xl">
-					Explore vans ready for weekends, long stays, and detours.
-				</h1>
-			</div>
+			<PageHeader
+				eyebrow="Choose your route"
+				title="Explore vans ready for weekends, long stays, and detours."
+			/>
 
 			<div className="mb-12 flex flex-wrap items-center justify-between gap-4">
 				<VanTypeFilter
