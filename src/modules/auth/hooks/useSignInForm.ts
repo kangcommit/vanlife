@@ -1,6 +1,6 @@
 import { type ChangeEvent, type SubmitEvent, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { signInUser } from "../services/signIn";
+import { signInUser } from "../services/authService";
 import { signIn } from "../utils/session";
 
 const fallbackRedirectPath = "/host";

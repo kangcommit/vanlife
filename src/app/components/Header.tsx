@@ -1,6 +1,7 @@
 import { RxAvatar } from "react-icons/rx";
 import { Link, useNavigate } from "react-router";
 import { authRoutePaths } from "@/modules/auth/routePaths";
+import { signOutUser } from "@/modules/auth/services/authService";
 import { isSignedIn, signOut } from "@/modules/auth/utils/session";
 import { Nav } from "@/shared/components/Nav";
 import { headerNavigation } from "../routes/navigation";
@@ -9,7 +10,8 @@ import { paths } from "../routes/paths";
 export default function Header() {
 	const navigate = useNavigate();
 
-	function handleSignOut() {
+	async function handleSignOut() {
+		await signOutUser();
 		signOut();
 		navigate(paths.home, { replace: true });
 	}
