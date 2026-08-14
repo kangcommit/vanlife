@@ -5,17 +5,18 @@ import { capitalize } from "@/shared/utils/format";
 const vanTypeButton = tv({
 	base: "rounded-lg bg-panel px-5 py-2 font-semibold text-base transition-colors active:scale-95",
 	variants: {
-		type: {
-			simple: "hover:bg-clay hover:text-surface aria-pressed:bg-clay",
-			luxury: "hover:bg-ink hover:text-surface aria-pressed:bg-ink",
-			rugged: "hover:bg-sage hover:text-surface aria-pressed:bg-sage",
-		},
 		selected: {
 			true: "text-surface",
 			false: "text-muted",
 		},
 	},
 });
+
+const buttonColorByType: Record<string, string> = {
+	simple: "hover:bg-clay hover:text-surface aria-pressed:bg-clay",
+	luxury: "hover:bg-ink hover:text-surface aria-pressed:bg-ink",
+	rugged: "hover:bg-sage hover:text-surface aria-pressed:bg-sage",
+};
 
 interface VanTypeFilterProps {
 	types: VanType[];
@@ -38,8 +39,10 @@ export default function VanTypeFilter({
 						aria-pressed={selectedType === type}
 						onClick={() => onSelect(type)}
 						className={vanTypeButton({
-							type,
 							selected: selectedType === type,
+							className:
+								buttonColorByType[type] ??
+								"hover:bg-forest hover:text-surface aria-pressed:bg-forest",
 						})}
 					>
 						{capitalize(type)}

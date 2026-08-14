@@ -4,14 +4,13 @@ import type { VanType } from "../types";
 
 const vanTypeBadge = tv({
 	base: "shrink-0 rounded-md px-3 py-1 font-semibold text-sm text-surface",
-	variants: {
-		type: {
-			simple: "bg-clay",
-			luxury: "bg-ink",
-			rugged: "bg-sage",
-		},
-	},
 });
+
+const badgeColorByType: Record<string, string> = {
+	simple: "bg-clay",
+	luxury: "bg-ink",
+	rugged: "bg-sage",
+};
 
 interface VanTypeBadgeProps {
 	type: VanType;
@@ -20,7 +19,11 @@ interface VanTypeBadgeProps {
 
 export default function VanTypeBadge({ type, className }: VanTypeBadgeProps) {
 	return (
-		<span className={vanTypeBadge({ type, className })}>
+		<span
+			className={vanTypeBadge({
+				className: [badgeColorByType[type] ?? "bg-forest", className],
+			})}
+		>
 			{capitalize(type)}
 		</span>
 	);
