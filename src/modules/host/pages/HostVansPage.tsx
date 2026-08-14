@@ -19,12 +19,19 @@ export default function HostVansPage() {
 
 	return (
 		<>
-			<h1 className="mt-14 mb-8 font-bold text-3xl text-coal">
-				Your listed vans
-			</h1>
+			<div className="mb-8 max-w-3xl">
+				<p className="mb-4 font-semibold text-clay text-sm uppercase tracking-widest">
+					Your fleet
+				</p>
+				<h1 className="text-balance font-black text-4xl text-ink leading-tight md:text-5xl">
+					Your listed vans.
+				</h1>
+			</div>
 
 			{vans.length > 0 ? (
-				<div className="flex flex-col gap-4">{vanElements}</div>
+				<div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+					{vanElements}
+				</div>
 			) : (
 				<EmptyState
 					title="No listed vans"

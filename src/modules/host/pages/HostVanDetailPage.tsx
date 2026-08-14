@@ -1,11 +1,36 @@
-import { Outlet, useParams } from "react-router";
+import { useParams } from "react-router";
 import { BackButton } from "@/shared/components/BackButton";
+import { EmptyState } from "@/shared/components/EmptyState";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
-import { Nav } from "@/shared/components/Nav";
 import VanTypeBadge from "@/shared/domain/vans/components/VanTypeBadge";
 import { useVan } from "@/shared/domain/vans/hooks/useVan";
-import { hostVanDetailNavigation } from "../navigation";
+import type { Van } from "@/shared/domain/vans/types";
+
+interface InfoRowProps {
+	label: string;
+	value: string;
+}
+
+function InfoRow({ label, value }: InfoRowProps) {
+	return (
+		<div className="flex flex-col gap-1 text-sm sm:flex-row sm:gap-3">
+			<dt className="w-24 shrink-0 font-bold text-ink">{label}</dt>
+			<dd className="font-medium text-muted">{value}</dd>
+		</div>
+	);
+}
+
+function VanInfo({ van }: { van: Van }) {
+	return (
+		<dl className="flex flex-col gap-5">
+			<InfoRow label="Name" value={van.name} />
+			<InfoRow label="Category" value={van.type} />
+			<InfoRow label="Description" value={van.description} />
+			<InfoRow label="Visibility" value="Public" />
+		</dl>
+	);
+}
 
 export default function HostVanDetailPage() {
 	const params = useParams();
@@ -24,34 +49,38 @@ export default function HostVanDetailPage() {
 	if (van) {
 		return (
 			<>
-				<BackButton to=".." className="mt-15 mb-9" />
-				<section className="rounded-md bg-white p-6.5">
-					<div className="mb-6.5 flex items-center gap-5">
+				<BackButton to=".." className="mb-8 text-muted hover:text-clay" />
+				<section className="rounded-2xl bg-surface p-6 shadow-sm md:p-8">
+					<div className="mb-8 flex flex-col gap-6 md:flex-row md:items-center">
 						<img
 							src={van.imageUrl}
 							alt={van.name}
-							className="size-40 rounded-md object-cover"
+							className="aspect-video w-full rounded-xl object-cover md:size-40"
 						/>
 						<div>
 							<VanTypeBadge type={van.type} className="mb-4 inline-block" />
-							<h1 className="mb-0.5 font-bold text-2xl text-coal">
+							<h1 className="font-black text-4xl text-ink leading-tight">
 								{van.name}
 							</h1>
-							<p className="text-coal">
-								<span className="font-bold text-xl">${van.price}</span>
-								<span className="font-medium text-base">/day</span>
+							<p className="mt-2 text-muted">
+								<span className="font-black text-2xl text-ink">
+									${van.price}
+								</span>
+								<span className="font-semibold text-base"> / day</span>
 							</p>
 						</div>
 					</div>
 
-					<Nav
-						links={hostVanDetailNavigation}
-						className="mb-7"
-						ariaLabel="Van detail navigation"
-					/>
-					<Outlet context={van} />
+					<VanInfo van={van} />
 				</section>
 			</>
 		);
 	}
+
+	return (
+		<EmptyState
+			title="Van not found"
+			message="This van may not exist, or it may not belong to your host account."
+		/>
+	);
 }
