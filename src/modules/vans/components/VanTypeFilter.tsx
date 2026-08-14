@@ -3,16 +3,16 @@ import type { VanType } from "@/shared/domain/vans/types";
 import { capitalize } from "@/shared/utils/format";
 
 const vanTypeButton = tv({
-	base: "h-9 w-26 cursor-pointer rounded-md bg-peach text-base transition-colors",
+	base: "rounded-lg bg-panel px-5 py-2 font-semibold text-base transition-colors active:scale-95",
 	variants: {
 		type: {
-			simple: "hover:bg-terracotta hover:text-peach aria-pressed:bg-terracotta",
-			luxury: "hover:bg-coal hover:text-peach aria-pressed:bg-coal",
-			rugged: "hover:bg-teal hover:text-peach aria-pressed:bg-teal",
+			simple: "hover:bg-clay hover:text-surface aria-pressed:bg-clay",
+			luxury: "hover:bg-ink hover:text-surface aria-pressed:bg-ink",
+			rugged: "hover:bg-sage hover:text-surface aria-pressed:bg-sage",
 		},
 		selected: {
-			true: "font-semibold text-peach",
-			false: "text-slate",
+			true: "text-surface",
+			false: "text-muted",
 		},
 	},
 });

@@ -1,5 +1,6 @@
 import { useLocation, useParams } from "react-router";
 import { BackButton } from "@/shared/components/BackButton";
+import { EmptyState } from "@/shared/components/EmptyState";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
 import VanTypeBadge from "@/shared/domain/vans/components/VanTypeBadge";
@@ -23,35 +24,41 @@ export default function VanDetail() {
 
 	if (van) {
 		return (
-			<section className="mx-auto max-w-7xl px-6 pt-10 pb-21">
+			<section className="mx-auto max-w-7xl px-6 py-16 md:py-20">
 				<BackButton
 					to={`..${search}`}
-					className="mb-10"
+					className="mb-10 text-muted hover:text-clay"
 					text={`Back to ${type} vans`}
 				/>
 
-				<div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-16">
-					<img
-						src={van.imageUrl}
-						alt={van.name}
-						className="mx-auto aspect-square w-full max-w-md rounded-lg lg:w-1/2 lg:max-w-none"
-					/>
+				<div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
+					<div className="overflow-hidden rounded-2xl bg-panel shadow-md">
+						<img
+							src={van.imageUrl}
+							alt={van.name}
+							className="aspect-square w-full object-cover"
+						/>
+					</div>
 
-					<div className="flex flex-1 flex-col">
+					<div className="flex flex-col py-2">
 						<VanTypeBadge type={van.type} className="mb-6 w-fit" />
 
-						<h1 className="mb-3 font-bold text-3xl md:text-4xl">{van.name}</h1>
+						<h1 className="mb-4 text-balance font-black text-4xl text-ink leading-tight md:text-6xl">
+							{van.name}
+						</h1>
 
-						<p className="mb-6 text-coal">
-							<span className="font-bold text-2xl">${van.price}</span>
-							<span className="font-medium text-xl">/day</span>
+						<p className="mb-8 text-muted">
+							<span className="font-black text-3xl text-ink">${van.price}</span>
+							<span className="font-semibold text-lg"> / day</span>
 						</p>
 
-						<p className="mb-8 text-coal leading-7">{van.description}</p>
+						<p className="mb-10 max-w-2xl font-medium text-lg text-muted leading-9">
+							{van.description}
+						</p>
 
 						<button
 							type="button"
-							className="w-full rounded-md bg-orange py-3 font-bold text-lg text-white transition-colors hover:bg-orange-hover md:w-fit md:px-12"
+							className="w-full rounded-lg bg-clay px-8 py-3 font-bold text-lg text-surface transition-colors hover:bg-clay-dark active:scale-95 md:w-fit"
 						>
 							Rent this van
 						</button>
@@ -60,4 +67,18 @@ export default function VanDetail() {
 			</section>
 		);
 	}
+
+	return (
+		<section className="mx-auto max-w-7xl px-6 py-16 md:py-20">
+			<BackButton
+				to={`..${search}`}
+				className="mb-10 text-muted hover:text-clay"
+				text={`Back to ${type} vans`}
+			/>
+			<EmptyState
+				title="Van not found"
+				message="This van may have moved, or the address may need another look."
+			/>
+		</section>
+	);
 }

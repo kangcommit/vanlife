@@ -3,12 +3,12 @@ import { capitalize } from "@/shared/utils/format";
 import type { VanType } from "../types";
 
 const vanTypeBadge = tv({
-	base: "rounded-md px-3 py-1 font-semibold text-base text-peach",
+	base: "shrink-0 rounded-md px-3 py-1 font-semibold text-sm text-surface",
 	variants: {
 		type: {
-			simple: "bg-terracotta",
-			luxury: "bg-coal",
-			rugged: "bg-teal",
+			simple: "bg-clay",
+			luxury: "bg-ink",
+			rugged: "bg-sage",
 		},
 	},
 });

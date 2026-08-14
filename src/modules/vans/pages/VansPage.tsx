@@ -38,10 +38,17 @@ export default function Vans() {
 	}
 
 	return (
-		<section className="mx-auto mt-13.5 mb-21 max-w-7xl px-6">
-			<h1 className="mb-6 font-bold text-3xl">Explore our van options</h1>
+		<section className="mx-auto max-w-7xl px-6 py-16 md:py-20">
+			<div className="mb-10 max-w-3xl">
+				<p className="mb-4 font-semibold text-clay text-sm uppercase tracking-widest">
+					Choose your route
+				</p>
+				<h1 className="text-balance font-black text-4xl text-ink leading-tight md:text-5xl">
+					Explore vans ready for weekends, long stays, and detours.
+				</h1>
+			</div>
 
-			<div className="mb-10 flex flex-wrap items-center justify-between gap-4">
+			<div className="mb-12 flex flex-wrap items-center justify-between gap-4">
 				<VanTypeFilter
 					types={uniqueTypes}
 					selectedType={typeFilter}
@@ -52,7 +59,7 @@ export default function Vans() {
 					<button
 						type="button"
 						onClick={handleClearFilter}
-						className="cursor-pointer font-medium text-slate hover:underline"
+						className="font-semibold text-muted transition-colors hover:text-clay"
 					>
 						Clear filters
 					</button>
@@ -60,7 +67,7 @@ export default function Vans() {
 			</div>
 
 			{displayedVans.length > 0 ? (
-				<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+				<div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
 					{displayedVans.map((van) => (
 						<VanCard
 							key={van.id}
