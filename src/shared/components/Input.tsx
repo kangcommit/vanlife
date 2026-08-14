@@ -7,7 +7,7 @@ export function Input({ type = "text", ...props }: InputProps) {
 		<input
 			type={type}
 			{...props}
-			className="rounded-md border border-smoke bg-white px-3 py-2 font-normal text-base text-slate shadow-sm"
+			className="rounded-lg border border-line bg-surface px-4 py-3 font-medium text-base text-ink shadow-sm outline-none transition-colors placeholder:text-soft focus:border-clay"
 		/>
 	);
 }

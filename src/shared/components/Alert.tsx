@@ -4,21 +4,21 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 const alert = tv({
 	slots: {
-		base: "flex w-full max-w-md items-start gap-3 rounded-md border px-4 py-3",
+		base: "flex w-full items-start gap-3 rounded-lg border px-4 py-3",
 		icon: "mt-0.5 shrink-0 text-base",
 		text: "font-medium text-sm leading-6",
 	},
 	variants: {
 		variant: {
 			info: {
-				base: "border-amber-200 bg-amber-50",
-				icon: "text-amber-600",
-				text: "text-amber-900",
+				base: "border-line bg-panel",
+				icon: "text-clay",
+				text: "text-ink",
 			},
 			error: {
 				base: "border-red-200 bg-red-50",
-				icon: "text-red-600",
-				text: "text-red-900",
+				icon: "text-red-700",
+				text: "text-red-950",
 			},
 		},
 	},
