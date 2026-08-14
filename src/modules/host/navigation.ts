@@ -6,9 +6,3 @@ export const hostNavigation: NavItem[] = [
 	{ to: "vans", label: "Vans" },
 	{ to: "reviews", label: "Reviews" },
 ];
-
-export const hostVanDetailNavigation: NavItem[] = [
-	{ to: ".", label: "Details", end: true },
-	{ to: "pricing", label: "Pricing" },
-	{ to: "photos", label: "Photos" },
-];
