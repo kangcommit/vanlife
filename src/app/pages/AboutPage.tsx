@@ -1,41 +1,59 @@
 import { Link } from "react-router";
-import AboutHero from "@/assets/images/about-hero.png";
+import AboutHero from "@/assets/images/about-hero-pexels-van.jpg";
 import { vansRoutePaths } from "@/modules/vans/routePaths";
 
 export default function AboutPage() {
 	return (
-		<section>
-			<img
-				src={AboutHero}
-				alt="A camper van parked in a scenic location"
-				className="w-full"
-			/>
+		<section className="bg-canvas">
+			<div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
+				<div>
+					<p className="mb-6 font-semibold text-clay text-sm uppercase tracking-widest">
+						Built for slower travel
+					</p>
 
-			<div className="mb-14 flex flex-col gap-8 px-6.5 py-12">
-				<h1 className="font-bold text-3xl text-coal">
-					Don't squeeze in a sedan when you could relax in a van.
-				</h1>
-				<p className="font-medium text-base text-coal">
-					Our mission is to enliven your road trip with the perfect travel van
-					rental. Our vans are recertified before each trip to ensure your
-					travel plans can go off without a hitch. (Hitch costs extra 😉)
-					<br />
-					<br />
-					Our team is full of vanlife enthusiasts who know firsthand the magic
-					of touring the world on 4 wheels.
-				</p>
+					<h1 className="max-w-2xl text-balance font-black text-4xl text-ink leading-tight md:text-6xl md:leading-tight">
+						Don&apos;t squeeze the trip into the wrong car.
+					</h1>
+
+					<div className="mt-10 max-w-2xl space-y-6 font-medium text-lg text-muted leading-9">
+						<p>
+							Our mission is to make road trips feel easier from the first mile.
+							Every van is prepared before each booking, so your plans can stay
+							focused on where you are going.
+						</p>
+						<p>
+							We are travelers too, which means we care about the small things:
+							room to stretch, simple storage, reliable handoff, and a ride that
+							feels ready for a real route.
+						</p>
+					</div>
+				</div>
+
+				<img
+					src={AboutHero}
+					alt="A camper van parked in a scenic location"
+					className="aspect-video w-full rounded-2xl object-cover shadow-md lg:aspect-square"
+				/>
 			</div>
 
-			<div className="mx-6.5 mb-13 flex flex-col items-start gap-6 rounded-sm bg-orange-light px-9 py-8">
-				<h2 className="font-bold text-2xl text-coal">
-					Your destination is waiting. Your van is ready.
-				</h2>
-				<Link
-					to={`/${vansRoutePaths.root}`}
-					className="rounded-xl bg-coal px-5.5 py-3 font-bold text-base text-white"
-				>
-					Explore our vans
-				</Link>
+			<div className="mx-auto max-w-7xl px-6 pb-20">
+				<div className="grid gap-8 rounded-2xl bg-forest p-8 shadow-md md:grid-cols-2 md:items-center md:p-10">
+					<div>
+						<p className="font-semibold text-panel text-sm uppercase tracking-widest">
+							Ready when you are
+						</p>
+						<h2 className="mt-4 max-w-xl font-black text-3xl text-surface leading-tight">
+							Your destination is waiting. Your van should be ready too.
+						</h2>
+					</div>
+
+					<Link
+						to={`/${vansRoutePaths.root}`}
+						className="inline-flex w-fit rounded-lg bg-surface px-6 py-3 font-bold text-forest transition-colors hover:bg-panel active:scale-95 md:justify-self-end"
+					>
+						Explore vans
+					</Link>
+				</div>
 			</div>
 		</section>
 	);

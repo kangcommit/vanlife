@@ -1,31 +1,40 @@
 import { Link } from "react-router";
-import HomeHero from "@/assets/images/home-hero.png";
+import HomeHero from "@/assets/images/home-hero-unsplash-mountain-van.jpg";
 import { vansRoutePaths } from "@/modules/vans/routePaths";
 
 export default function HomePage() {
 	return (
-		<section className="relative flex min-h-[calc(100vh-172px)] flex-col justify-center px-5 sm:px-8">
+		<section className="relative isolate min-h-dvh overflow-hidden">
 			<img
 				src={HomeHero}
-				alt=""
-				className="absolute inset-0 -z-10 h-full w-full object-cover"
+				alt="A camper van parked near mountains at sunset"
+				className="absolute inset-0 -z-20 h-full w-full object-cover"
 			/>
+			<div className="absolute inset-0 -z-10 bg-ink/55" />
 
-			<h1 className="mb-5.5 max-w-xl font-extrabold text-4xl text-white">
-				You got the travel plans, we got the travel vans.
-			</h1>
+			<div className="mx-auto flex min-h-dvh max-w-7xl items-center px-6 py-20">
+				<div className="max-w-3xl">
+					<p className="mb-4 font-semibold text-panel text-sm uppercase tracking-widest">
+						Road trips, without the rental counter
+					</p>
 
-			<p className="mb-12.5 max-w-lg font-medium text-base text-white">
-				Add adventure to your life by joining the #vanlife movement. Rent the
-				perfect van to make your perfect road trip.
-			</p>
+					<h1 className="max-w-2xl text-balance font-black text-5xl text-surface leading-none md:text-7xl">
+						Find the van that fits the trip.
+					</h1>
 
-			<Link
-				to={vansRoutePaths.root}
-				className="w-full rounded-sm bg-orange py-2.5 text-center font-bold text-base text-white transition-colors hover:bg-orange-dark sm:w-fit sm:min-w-64 sm:px-8"
-			>
-				Find your van
-			</Link>
+					<p className="mt-6 max-w-xl font-medium text-lg text-panel leading-8">
+						Browse road-ready vans for quiet weekends, long detours, and the
+						kind of plans that get better once you leave town.
+					</p>
+
+					<Link
+						to={vansRoutePaths.root}
+						className="mt-10 inline-flex rounded-lg bg-clay px-6 py-3 font-bold text-surface transition-colors hover:bg-clay-dark active:scale-95"
+					>
+						Explore vans
+					</Link>
+				</div>
+			</div>
 		</section>
 	);
 }
