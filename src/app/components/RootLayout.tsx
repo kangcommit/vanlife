@@ -4,7 +4,7 @@ import Header from "./Header";
 
 export default function RootLayout() {
 	return (
-		<div className="flex min-h-screen flex-col">
+		<div className="flex min-h-dvh flex-col bg-canvas text-ink">
 			<Header />
 
 			<main className="flex-1">

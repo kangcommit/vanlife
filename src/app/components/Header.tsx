@@ -15,28 +15,38 @@ export default function Header() {
 	}
 
 	return (
-		<header className="flex items-center justify-between bg-sand px-6.5 py-9">
-			<Link
-				to={paths.home}
-				className="font-black text-2xl text-black uppercase hover:underline"
-			>
-				#VanLife
-			</Link>
-			<div className="flex gap-6.5">
-				<Nav links={headerNavigation} ariaLabel="Primary navigation" />
-				{isSignedIn() ? (
-					<button
-						type="button"
-						onClick={handleSignOut}
-						className="cursor-pointer font-semibold text-red-600 hover:text-red-700 hover:underline"
-					>
-						Sign out
-					</button>
-				) : (
-					<Link to={authRoutePaths.signIn} aria-label="Sign in">
-						<RxAvatar className="size-6" />
-					</Link>
-				)}
+		<header className="border-line border-b bg-canvas/95">
+			<div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+				<Link
+					to={paths.home}
+					className="font-black text-2xl text-ink transition-colors hover:text-clay"
+				>
+					VanLife
+				</Link>
+				<div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 sm:justify-end sm:gap-6">
+					<Nav
+						links={headerNavigation}
+						ariaLabel="Primary navigation"
+						className="flex-wrap gap-x-5 gap-y-2 sm:gap-6"
+					/>
+					{isSignedIn() ? (
+						<button
+							type="button"
+							onClick={handleSignOut}
+							className="font-semibold text-clay text-sm transition-colors hover:text-clay-dark active:scale-95"
+						>
+							Sign out
+						</button>
+					) : (
+						<Link
+							to={authRoutePaths.signIn}
+							aria-label="Sign in"
+							className="text-muted transition-colors hover:text-clay"
+						>
+							<RxAvatar className="size-6" />
+						</Link>
+					)}
+				</div>
 			</div>
 		</header>
 	);
