@@ -15,12 +15,12 @@ export function BackButton({ text = "Back", to, className }: BackButtonProps) {
 			relative="path"
 			className={cn(
 				"inline-flex items-center gap-3",
-				"font-medium text-base text-charcoal",
-				"hover:underline",
+				"font-semibold text-base text-muted",
+				"transition-colors hover:text-clay",
 				className,
 			)}
 		>
-			<FaArrowLeft className="text-gray" />
+			<FaArrowLeft className="text-soft" />
 			{text}
 		</Link>
 	);
