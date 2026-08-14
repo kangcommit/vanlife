@@ -4,10 +4,11 @@ import { hostNavigation } from "../navigation";
 
 export default function HostLayout() {
 	return (
-		<section className="mx-6.5 mt-8">
+		<section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
 			<Nav
 				links={hostNavigation}
 				variant="secondary"
+				className="mb-12"
 				ariaLabel="Host navigation"
 			/>
 			<Outlet />
