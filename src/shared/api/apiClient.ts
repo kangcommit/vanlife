@@ -1,15 +1,21 @@
+import axios from "axios";
 import { env } from "@/shared/config/env";
 
-export const apiClient = async (path: string, options: RequestInit = {}) => {
-	const headers = new Headers(options.headers);
+export const apiClient = axios.create({
+	baseURL: env.apiBaseUrl,
+	withCredentials: true,
+	headers: {
+		"Content-Type": "application/json",
+	},
+});
 
-	if (options.body && !headers.has("Content-Type")) {
-		headers.set("Content-Type", "application/json");
-	}
+apiClient.interceptors.response.use(
+	(response) => response,
+	(error) => {
+		if (axios.isAxiosError<{ message?: string }>(error)) {
+			throw new Error(error.response?.data?.message ?? error.message);
+		}
 
-	return fetch(`${env.apiBaseUrl}${path}`, {
-		...options,
-		credentials: "include",
-		headers,
-	});
-};
+		throw error;
+	},
+);

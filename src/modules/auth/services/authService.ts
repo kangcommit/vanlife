@@ -7,23 +7,14 @@ interface SignInCredentials {
 }
 
 export async function signInUser({ email, password }: SignInCredentials) {
-	const response = await apiClient(apiPaths.auth.signInEmail, {
-		method: "POST",
-		body: JSON.stringify({ email, password }),
+	const response = await apiClient.post(apiPaths.auth.signInEmail, {
+		email,
+		password,
 	});
 
-	const data = await response.json();
-
-	if (!response.ok) {
-		throw new Error(data.message);
-	}
-
-	return data;
+	return response.data;
 }
 
 export async function signOutUser() {
-	await apiClient(apiPaths.auth.signOut, {
-		method: "POST",
-		body: JSON.stringify({}),
-	});
+	await apiClient.post(apiPaths.auth.signOut, {});
 }
