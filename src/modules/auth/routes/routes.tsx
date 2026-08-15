@@ -1,5 +1,5 @@
 import { Route } from "react-router";
-import SignInPage from "./pages/SignInPage";
+import SignInPage from "../pages/SignInPage";
 import { authRoutePaths } from "./routePaths";
 
 export const authRoutes = (

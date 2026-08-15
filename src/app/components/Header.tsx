@@ -1,6 +1,6 @@
 import { RxAvatar } from "react-icons/rx";
 import { Link, useNavigate } from "react-router";
-import { authRoutePaths } from "@/modules/auth/routePaths";
+import { authRoutePaths } from "@/modules/auth/routes";
 import { signOutUser } from "@/modules/auth/services/authService";
 import { isSignedIn, signOut } from "@/modules/auth/utils/session";
 import { Nav } from "@/shared/components/Nav";

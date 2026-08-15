@@ -1,10 +1,10 @@
 import { Route } from "react-router";
-import HostLayout from "./components/HostLayout";
-import DashboardPage from "./pages/DashboardPage";
-import HostVanDetailPage from "./pages/HostVanDetailPage";
-import HostVansPage from "./pages/HostVansPage";
-import IncomePage from "./pages/IncomePage";
-import ReviewsPage from "./pages/ReviewsPage";
+import HostLayout from "../components/HostLayout";
+import DashboardPage from "../pages/DashboardPage";
+import HostVanDetailPage from "../pages/HostVanDetailPage";
+import HostVansPage from "../pages/HostVansPage";
+import IncomePage from "../pages/IncomePage";
+import ReviewsPage from "../pages/ReviewsPage";
 import { hostRoutePaths } from "./routePaths";
 
 export const hostRoutes = (

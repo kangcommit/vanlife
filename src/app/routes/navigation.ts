@@ -1,5 +1,5 @@
-import { hostRoutePaths } from "@/modules/host/routePaths";
-import { vansRoutePaths } from "@/modules/vans/routePaths";
+import { hostRoutePaths } from "@/modules/host/routes";
+import { vansRoutePaths } from "@/modules/vans/routes";
 import type { NavItem } from "@/shared/utils/types";
 import { paths } from "./paths";
 

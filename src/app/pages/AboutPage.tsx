@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import AboutHero from "@/assets/images/about-hero-pexels-van.jpg";
-import { vansRoutePaths } from "@/modules/vans/routePaths";
+import { vansRoutePaths } from "@/modules/vans/routes";
 
 export default function AboutPage() {
 	return (

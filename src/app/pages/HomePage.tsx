@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import HomeHero from "@/assets/images/home-hero-unsplash-mountain-van.jpg";
-import { vansRoutePaths } from "@/modules/vans/routePaths";
+import { vansRoutePaths } from "@/modules/vans/routes";
 
 export default function HomePage() {
 	return (

@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router";
-import AuthRequired from "@/app/AuthRequired";
+import AuthRequired from "@/app/guards/AuthRequired";
 import { authRoutes } from "@/modules/auth/routes";
 import { hostRoutes } from "@/modules/host/routes";
 import { vansRoutes } from "@/modules/vans/routes";
 import RootLayout from "../components/RootLayout";
-import GuestOnly from "../GuestOnly";
+import GuestOnly from "../guards/GuestOnly";
 import AboutPage from "../pages/AboutPage";
 import HomePage from "../pages/HomePage";
 import NotFoundPage from "../pages/NotFoundPage";

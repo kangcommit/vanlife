@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router";
 import { isSignedIn } from "@/modules/auth/utils/session";
-import { hostRoutePaths } from "@/modules/host/routePaths";
+import { hostRoutePaths } from "@/modules/host/routes";
 
 export default function GuestOnly() {
 	if (isSignedIn()) {
