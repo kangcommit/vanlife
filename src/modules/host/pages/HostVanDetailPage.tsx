@@ -1,5 +1,4 @@
 import { useParams } from "react-router";
-import { apiPaths } from "@/shared/api/endpoints";
 import { BackButton } from "@/shared/components/BackButton";
 import { EmptyState } from "@/shared/components/EmptyState";
 import ErrorMessage from "@/shared/components/ErrorMessage";
@@ -35,16 +34,14 @@ function VanInfo({ van }: { van: VanDetail }) {
 
 export default function HostVanDetailPage() {
 	const { id } = useParams();
-	const { van, loading, error, fetchVan } = useVan(
-		id ? apiPaths.host.vans.detail(id) : null,
-	);
+	const { van, loading, error, refetch } = useVan(id, { isHost: true });
 
 	if (loading) {
 		return <LoadingSpinner />;
 	}
 
 	if (error) {
-		return <ErrorMessage onRetry={fetchVan} />;
+		return <ErrorMessage onRetry={refetch} />;
 	}
 
 	if (van) {

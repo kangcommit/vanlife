@@ -1,37 +1,36 @@
-import { useCallback, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { apiPaths } from "@/shared/api/endpoints";
+import { vanQueryKeys } from "../queryKeys";
 import { getVan } from "../services/vanService";
-import type { VanDetail } from "../types";
 
-export function useVan(url: string | null) {
-	const [van, setVan] = useState<VanDetail | null>(null);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(false);
+interface UseVanOptions {
+	isHost?: boolean;
+}
 
-	const fetchVan = useCallback(async () => {
-		if (!url) {
-			setVan(null);
-			setLoading(false);
-			setError(false);
-			return;
-		}
+export function useVan(
+	id: string | undefined,
+	{ isHost = false }: UseVanOptions = {},
+) {
+	const url = id
+		? isHost
+			? apiPaths.host.vans.detail(id)
+			: apiPaths.vans.detail(id)
+		: null;
+	const queryKey = isHost
+		? vanQueryKeys.hostDetail(id ?? "")
+		: vanQueryKeys.detail(id ?? "");
 
-		setLoading(true);
-		setError(false);
+	const { isPending, error, data, refetch } = useQuery({
+		queryKey,
+		queryFn: () => {
+			if (!url) {
+				throw new Error("Van URL is required");
+			}
 
-		try {
-			const data = await getVan(url);
+			return getVan(url);
+		},
+		enabled: Boolean(url),
+	});
 
-			setVan(data);
-		} catch (_) {
-			setError(true);
-		} finally {
-			setLoading(false);
-		}
-	}, [url]);
-
-	useEffect(() => {
-		fetchVan();
-	}, [fetchVan]);
-
-	return { van, loading, error, fetchVan };
+	return { loading: isPending, error, van: data ?? null, refetch };
 }

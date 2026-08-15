@@ -1,30 +1,20 @@
-import { useCallback, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { apiPaths } from "@/shared/api/endpoints";
+import { vanQueryKeys } from "../queryKeys";
 import { getVans } from "../services/vanService";
-import type { Van } from "../types";
 
-export function useVans(url: string) {
-	const [vans, setVans] = useState<Van[]>([]);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(false);
+interface UseVansOptions {
+	isHost?: boolean;
+}
 
-	const fetchVans = useCallback(async () => {
-		setLoading(true);
-		setError(false);
+export function useVans({ isHost = false }: UseVansOptions = {}) {
+	const url = isHost ? apiPaths.host.vans.list : apiPaths.vans.list;
+	const queryKey = isHost ? vanQueryKeys.hostList() : vanQueryKeys.list();
 
-		try {
-			const data = await getVans(url);
+	const { isPending, error, data, refetch } = useQuery({
+		queryKey,
+		queryFn: () => getVans(url),
+	});
 
-			setVans(data);
-		} catch (_) {
-			setError(true);
-		} finally {
-			setLoading(false);
-		}
-	}, [url]);
-
-	useEffect(() => {
-		fetchVans();
-	}, [fetchVans]);
-
-	return { vans, loading, error, fetchVans };
+	return { loading: isPending, error, vans: data ?? [], refetch };
 }
