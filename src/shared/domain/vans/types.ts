@@ -3,10 +3,6 @@ export interface VansResponse {
 	meta: Meta;
 }
 
-export interface VanResponse {
-	data: VanDetail;
-}
-
 export interface Van {
 	id: string;
 	name: string;

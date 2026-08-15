@@ -1,6 +1,6 @@
 import { apiClient } from "@/shared/api/apiClient";
 import type { ApiErrorResponse } from "@/shared/api/types";
-import type { VanResponse, VansResponse } from "@/shared/domain/vans/types";
+import type { VanDetail, VansResponse } from "@/shared/domain/vans/types";
 
 export async function getVans(url: string) {
 	const response = await apiClient(url);
@@ -25,7 +25,7 @@ export async function getVan(url: string) {
 		throw new Error(error.message);
 	}
 
-	const data: VanResponse = await response.json();
+	const data: VanDetail = await response.json();
 
-	return data.data;
+	return data;
 }
