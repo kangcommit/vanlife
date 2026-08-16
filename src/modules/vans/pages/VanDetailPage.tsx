@@ -5,6 +5,7 @@ import ErrorMessage from "@/shared/components/ErrorMessage";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
 import VanTypeBadge from "@/shared/domain/vans/components/VanTypeBadge";
 import { useVan } from "@/shared/domain/vans/hooks/useVan";
+import { BookingPanel } from "../components/BookingPanel";
 
 export default function VanDetail() {
 	const { id } = useParams();
@@ -40,28 +41,27 @@ export default function VanDetail() {
 						/>
 					</div>
 
-					<div className="flex flex-col py-2">
-						<VanTypeBadge type={van.type} className="mb-6 w-fit" />
+					<div className="grid gap-8 py-2">
+						<div>
+							<VanTypeBadge type={van.type} className="mb-6 w-fit" />
 
-						<h1 className="mb-4 text-balance font-black text-4xl text-ink leading-tight md:text-6xl">
-							{van.name}
-						</h1>
+							<h1 className="mb-4 text-balance font-black text-4xl text-ink leading-tight md:text-6xl">
+								{van.name}
+							</h1>
 
-						<p className="mb-8 text-muted">
-							<span className="font-black text-3xl text-ink">${van.price}</span>
-							<span className="font-semibold text-lg"> / day</span>
-						</p>
+							<p className="mb-8 text-muted">
+								<span className="font-black text-3xl text-ink">
+									${van.price}
+								</span>
+								<span className="font-semibold text-lg"> / day</span>
+							</p>
 
-						<p className="mb-10 max-w-2xl font-medium text-lg text-muted leading-9">
-							{van.description}
-						</p>
+							<p className="max-w-2xl font-medium text-lg text-muted leading-9">
+								{van.description}
+							</p>
+						</div>
 
-						<button
-							type="button"
-							className="w-full rounded-lg bg-clay px-8 py-3 font-bold text-lg text-surface transition-colors hover:bg-clay-dark active:scale-95 md:w-fit"
-						>
-							Rent this van
-						</button>
+						<BookingPanel van={van} />
 					</div>
 				</div>
 			</section>
