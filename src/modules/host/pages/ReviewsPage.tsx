@@ -25,6 +25,10 @@ export default function ReviewsPage() {
 		return null;
 	}
 
+	const reviewCountLabel = `${reviews.reviews.length} ${
+		reviews.reviews.length === 1 ? "review" : "reviews"
+	}`;
+
 	return (
 		<section>
 			<PageHeader
@@ -50,7 +54,7 @@ export default function ReviewsPage() {
 						<div>
 							<StarRating rating={Math.round(reviews.overallRating)} />
 							<p className="mt-2 font-medium text-muted text-sm">
-								Based on {reviews.reviews.length} reviews
+								Based on {reviewCountLabel}
 							</p>
 						</div>
 					</div>
@@ -67,9 +71,7 @@ export default function ReviewsPage() {
 						<h2 id="review-list" className="font-black text-2xl text-ink">
 							Latest feedback
 						</h2>
-						<p className="font-medium text-muted text-sm">
-							{reviews.reviews.length} reviews
-						</p>
+						<p className="font-medium text-muted text-sm">{reviewCountLabel}</p>
 					</div>
 
 					{reviews.reviews.length > 0 ? (
