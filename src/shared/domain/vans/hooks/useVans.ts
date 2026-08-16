@@ -7,7 +7,7 @@ interface UseVansOptions {
 }
 
 export function useVans({ isHost = false }: UseVansOptions = {}) {
-	const queryKey = isHost ? vanQueryKeys.hostList() : vanQueryKeys.list();
+	const queryKey = isHost ? vanQueryKeys.hostList : vanQueryKeys.list;
 
 	const { isPending, error, data, refetch } = useQuery({
 		queryKey,
