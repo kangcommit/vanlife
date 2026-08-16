@@ -36,11 +36,6 @@ body {
 	color: var(--color-surface);
 }
 
-:focus-visible:not(input):not(textarea) {
-	outline: 2px solid var(--color-clay);
-	outline-offset: 3px;
-}
-
 button,
 [role="button"],
 summary,
