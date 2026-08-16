@@ -19,7 +19,7 @@ export function PageHeader({
 	return (
 		<div
 			className={cn(
-				"mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between",
+				"mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between",
 				className,
 			)}
 		>

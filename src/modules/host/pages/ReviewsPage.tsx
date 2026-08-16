@@ -1,58 +1,41 @@
-import { FaStar } from "react-icons/fa6";
+import { useState } from "react";
+import { EmptyState } from "@/shared/components/EmptyState";
+import ErrorMessage from "@/shared/components/ErrorMessage";
+import LoadingSpinner from "@/shared/components/LoadingSpinner";
 import { PageHeader } from "@/shared/components/PageHeader";
-
-const ratingRows = [
-	{ label: "5 stars", value: 86 },
-	{ label: "4 stars", value: 12 },
-	{ label: "3 stars", value: 2 },
-	{ label: "2 stars", value: 0 },
-	{ label: "1 star", value: 0 },
-];
-
-const reviews = [
-	{
-		id: "review-1",
-		name: "Elliot Parker",
-		date: "Aug 10",
-		rating: 5,
-		text: "The van was clean, easy to pick up, and exactly what we needed for a long weekend near the coast.",
-	},
-	{
-		id: "review-2",
-		name: "Mina Hart",
-		date: "Aug 4",
-		rating: 5,
-		text: "Great handoff and thoughtful storage. It made the trip feel simple from the first stop.",
-	},
-];
-
-const starKeys = ["star-1", "star-2", "star-3", "star-4", "star-5"];
-
-function StarRating({ rating }: { rating: number }) {
-	return (
-		<div
-			className="flex gap-1 text-clay"
-			role="img"
-			aria-label={`${rating} out of 5 stars`}
-		>
-			{starKeys.map((starKey, index) => (
-				<FaStar
-					key={starKey}
-					aria-hidden="true"
-					className={index < rating ? "text-clay" : "text-line"}
-				/>
-			))}
-		</div>
-	);
-}
+import { DaysFilter } from "../components/DaysFilter";
+import { RatingDistributionRow } from "../components/RatingDistributionRow";
+import { ReviewCard } from "../components/ReviewCard";
+import { StarRating } from "../components/StarRating";
+import { useReviews } from "../hooks/useReviews";
 
 export default function ReviewsPage() {
+	const [days, setDays] = useState(30);
+	const { reviews, loading, error, refetch } = useReviews({ days });
+
+	if (loading) {
+		return <LoadingSpinner />;
+	}
+
+	if (error) {
+		return <ErrorMessage onRetry={refetch} />;
+	}
+
+	if (!reviews) {
+		return null;
+	}
+
 	return (
 		<section>
 			<PageHeader
 				eyebrow="Guest reviews"
 				title="Reviews from recent trips."
-				aside={<p className="font-medium text-muted">Last 30 days</p>}
+				aside={
+					<div className="flex flex-col gap-3 lg:items-end">
+						<p className="font-medium text-muted">Last {reviews.days} days</p>
+						<DaysFilter value={days} onChange={setDays} />
+					</div>
+				}
 			/>
 
 			<div className="grid gap-6 lg:grid-cols-3">
@@ -62,38 +45,19 @@ export default function ReviewsPage() {
 				>
 					<div className="flex items-center gap-4">
 						<h2 id="overall-rating" className="font-black text-5xl text-ink">
-							4.9
+							{reviews.overallRating.toFixed(1)}
 						</h2>
 						<div>
-							<StarRating rating={5} />
+							<StarRating rating={Math.round(reviews.overallRating)} />
 							<p className="mt-2 font-medium text-muted text-sm">
-								Based on {reviews.length} reviews
+								Based on {reviews.reviews.length} reviews
 							</p>
 						</div>
 					</div>
 
 					<div className="mt-8 grid gap-4">
-						{ratingRows.map((row) => (
-							<div
-								key={row.label}
-								className="grid grid-cols-4 items-center gap-3 font-medium text-muted text-sm"
-							>
-								<span>{row.label}</span>
-								<div
-									className="col-span-2 h-2 overflow-hidden rounded-full bg-panel"
-									role="progressbar"
-									aria-label={`${row.label}: ${row.value}%`}
-									aria-valuemin={0}
-									aria-valuemax={100}
-									aria-valuenow={row.value}
-								>
-									<div
-										className="h-full rounded-full bg-clay"
-										style={{ width: `${row.value}%` }}
-									/>
-								</div>
-								<span className="text-right">{row.value}%</span>
-							</div>
+						{reviews.ratingDistribution.map((row) => (
+							<RatingDistributionRow key={row.rating} row={row} />
 						))}
 					</div>
 				</section>
@@ -104,31 +68,22 @@ export default function ReviewsPage() {
 							Latest feedback
 						</h2>
 						<p className="font-medium text-muted text-sm">
-							{reviews.length} reviews
+							{reviews.reviews.length} reviews
 						</p>
 					</div>
 
-					<div className="grid gap-4">
-						{reviews.map((review) => (
-							<article
-								key={review.id}
-								className="rounded-xl bg-surface p-5 shadow-sm"
-							>
-								<div className="mb-4 flex flex-wrap items-start justify-between gap-3">
-									<div>
-										<h3 className="font-bold text-ink">{review.name}</h3>
-										<p className="mt-1 font-medium text-muted text-sm">
-											{review.date}
-										</p>
-									</div>
-									<StarRating rating={review.rating} />
-								</div>
-								<p className="font-medium text-muted leading-7">
-									{review.text}
-								</p>
-							</article>
-						))}
-					</div>
+					{reviews.reviews.length > 0 ? (
+						<div className="grid gap-4">
+							{reviews.reviews.map((review) => (
+								<ReviewCard key={review.id} review={review} />
+							))}
+						</div>
+					) : (
+						<EmptyState
+							title="No reviews yet"
+							message="Guest feedback will appear here after completed trips are reviewed."
+						/>
+					)}
 				</section>
 			</div>
 		</section>
