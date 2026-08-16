@@ -16,7 +16,7 @@ export default function SignInPage() {
 	return (
 		<section className="mx-auto flex max-w-7xl justify-center px-6 py-16 md:py-20">
 			<div className="w-full max-w-md">
-				<PageHeader eyebrow="Host access" title="Sign in to your account." />
+				<PageHeader eyebrow="Account access" title="Sign in to your account." />
 
 				{(message || error) && (
 					<div className="mb-8">
