@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router";
 import AuthRequired from "@/app/guards/AuthRequired";
 import { authRoutes } from "@/modules/auth/routes";
+import { bookingsRoutes } from "@/modules/bookings/routes";
 import { hostRoutes } from "@/modules/host/routes";
 import { vansRoutes } from "@/modules/vans/routes";
 import RootLayout from "../components/RootLayout";
@@ -20,7 +21,10 @@ export function AppRoutes() {
 				<Route element={<GuestOnly />}>{authRoutes}</Route>
 
 				{vansRoutes}
-				<Route element={<AuthRequired />}>{hostRoutes}</Route>
+				<Route element={<AuthRequired />}>
+					{bookingsRoutes}
+					{hostRoutes}
+				</Route>
 
 				<Route path={paths.notFound} element={<NotFoundPage />} />
 			</Route>

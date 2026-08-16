@@ -6,8 +6,8 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
 	year: "numeric",
 });
 
-export function formatBookingDate(date: Date) {
-	return dateFormatter.format(date);
+export function formatBookingDate(date: Date | string) {
+	return dateFormatter.format(new Date(date));
 }
 
 export function getDateRangeLabel(dateRange?: DateRange) {

@@ -18,6 +18,11 @@
 	--color-clay-dark: #9f5534;
 	--color-sage: #4f6f64;
 	--color-forest: #263f38;
+
+	--color-status-pending: #a46320;
+	--color-status-confirmed: #2f6f7e;
+	--color-status-completed: #3f7352;
+	--color-status-cancelled: #9f4f45;
 }
 
 html {

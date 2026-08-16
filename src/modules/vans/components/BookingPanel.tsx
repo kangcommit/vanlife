@@ -1,8 +1,11 @@
 import type { DateRange } from "@daypicker/react";
 import { useState } from "react";
+import { useCreateBooking } from "@/shared/domain/bookings/hooks/useCreateBooking";
+import {
+	formatDateForApi,
+	getNightCount,
+} from "@/shared/domain/bookings/utils/bookingDates";
 import type { VanDetail } from "@/shared/domain/vans/types";
-import { useCreateBooking } from "../hooks/useCreateBooking";
-import { formatDateForApi, getNightCount } from "../utils/bookingDates";
 import { BookingCalendar } from "./BookingCalendar";
 import { BookingStatus } from "./BookingStatus";
 import { BookingSummary } from "./BookingSummary";

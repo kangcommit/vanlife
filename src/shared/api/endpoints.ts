@@ -15,6 +15,7 @@ export const apiPaths = {
 
 	bookings: {
 		list: "/bookings",
+		cancel: (id: string) => `/bookings/${id}/cancel`,
 		reviews: "/reviews",
 	},
 

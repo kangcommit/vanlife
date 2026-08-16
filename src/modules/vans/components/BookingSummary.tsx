@@ -1,5 +1,5 @@
 import type { DateRange } from "@daypicker/react";
-import { getDateRangeLabel } from "../utils/bookingDates";
+import { getDateRangeLabel } from "@/shared/domain/bookings/utils/bookingDates";
 
 interface BookingSummaryProps {
 	dateRange?: DateRange;
