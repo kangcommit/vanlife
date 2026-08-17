@@ -1,18 +1,27 @@
 import { Navigate, Outlet, useLocation } from "react-router";
+import { useAuth } from "@/modules/auth/context/AuthProvider";
 import { authRoutePaths } from "@/modules/auth/routes";
-import { isSignedIn } from "@/modules/auth/utils/session";
+import ErrorMessage from "@/shared/components/ErrorMessage";
 
 export default function AuthRequired() {
 	const location = useLocation();
-	const { hash, pathname, search } = location;
+	const { status } = useAuth();
 
-	if (!isSignedIn()) {
+	if (status === "checking" || status === "signingOut") {
+		return null;
+	}
+
+	if (status === "failed") {
+		return <ErrorMessage />;
+	}
+
+	if (status === "anonymous") {
 		return (
 			<Navigate
 				to={authRoutePaths.signIn}
 				state={{
 					message: "You must sign in first",
-					from: pathname + search + hash,
+					from: location.pathname + location.search + location.hash,
 				}}
 				replace
 			/>
