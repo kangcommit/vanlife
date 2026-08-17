@@ -2,55 +2,51 @@ import { Link } from "react-router";
 import { Alert } from "@/shared/components/Alert";
 import { Input } from "@/shared/components/Input";
 import { PageHeader } from "@/shared/components/PageHeader";
-import { useSignInForm } from "../hooks/useSignInForm";
-import { authRoutePaths } from "../routes";
+import { useChangePasswordForm } from "../hooks/useChangePasswordForm";
 
-export default function SignInPage() {
-	const {
-		signInFormData,
-		loading,
-		error,
-		message,
-		handleChange,
-		handleSubmit,
-	} = useSignInForm();
+export default function ChangePasswordPage() {
+	const { formData, loading, error, success, handleChange, handleSubmit } =
+		useChangePasswordForm();
+	const alertMessage =
+		error?.message || (success ? "Your password has been updated." : "");
 
 	return (
 		<section className="mx-auto flex max-w-7xl justify-center px-6 py-16 md:py-20">
 			<div className="w-full max-w-md">
-				<PageHeader eyebrow="Account access" title="Sign in to your account." />
+				<PageHeader eyebrow="Account security" title="Change your password." />
 
-				{(message || error) && (
+				{alertMessage ? (
 					<div className="mb-8">
-						<Alert variant={error ? "error" : "info"}>{error ?? message}</Alert>
+						<Alert variant={error ? "error" : "info"}>{alertMessage}</Alert>
 					</div>
-				)}
+				) : null}
 
 				<form onSubmit={handleSubmit} className="flex flex-col gap-4">
-					<label htmlFor="email" className="sr-only">
-						Email address
+					<label htmlFor="currentPassword" className="sr-only">
+						Current password
 					</label>
 					<Input
-						id="email"
-						name="email"
-						type="email"
+						id="currentPassword"
+						name="currentPassword"
+						type="password"
+						value={formData.currentPassword}
 						onChange={handleChange}
-						autoComplete="email"
-						placeholder="Email address"
-						value={signInFormData.email}
+						autoComplete="current-password"
+						placeholder="Current password"
 						required
 					/>
 
-					<label htmlFor="password" className="sr-only">
-						Password
+					<label htmlFor="newPassword" className="sr-only">
+						New password
 					</label>
 					<Input
-						id="password"
-						name="password"
+						id="newPassword"
+						name="newPassword"
 						type="password"
+						value={formData.newPassword}
 						onChange={handleChange}
-						placeholder="Password"
-						value={signInFormData.password}
+						autoComplete="new-password"
+						placeholder="New password"
 						required
 					/>
 
@@ -59,17 +55,16 @@ export default function SignInPage() {
 						disabled={loading}
 						className="mt-4 rounded-lg bg-clay py-4 font-bold text-base text-surface transition-colors hover:bg-clay-dark active:scale-95 disabled:bg-soft disabled:text-panel"
 					>
-						{loading ? "Signing in..." : "Sign in"}
+						{loading ? "Updating password..." : "Update password"}
 					</button>
 				</form>
 
 				<p className="mt-6 text-center font-medium text-muted text-sm">
-					New to VanLife?{" "}
 					<Link
-						to={`/${authRoutePaths.signUp}`}
+						to=".."
 						className="font-bold text-clay transition-colors hover:text-clay-dark"
 					>
-						Create an account
+						Back to account
 					</Link>
 				</p>
 			</div>
