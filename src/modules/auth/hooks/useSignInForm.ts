@@ -1,17 +1,18 @@
 import { type ChangeEvent, type SubmitEvent, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { signInUser } from "../services/authService";
-import { signIn } from "../utils/session";
+import { authRoutePaths } from "../routes";
+import { useSignIn } from "./useSignIn";
 
-const fallbackRedirectPath = "/host";
+const fallbackRedirectPath = `/${authRoutePaths.account}`;
+
+const initialFormData = {
+	email: "",
+	password: "",
+};
 
 export function useSignInForm() {
-	const [signInFormData, setSignInFormData] = useState({
-		email: "",
-		password: "",
-	});
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState<string | null>(null);
+	const [signInFormData, setSignInFormData] = useState(initialFormData);
+	const { signIn, loading, error } = useSignIn();
 
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -27,28 +28,19 @@ export function useSignInForm() {
 		}));
 	}
 
-	async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
+	function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
-
-		setLoading(true);
-
-		try {
-			await signInUser(signInFormData);
-
-			setError(null);
-			signIn();
-			navigate(from, { replace: true });
-		} catch (err) {
-			setError(err instanceof Error ? err.message : "Something went wrong");
-		} finally {
-			setLoading(false);
-		}
+		signIn(signInFormData, {
+			onSuccess: () => {
+				navigate(from, { replace: true });
+			},
+		});
 	}
 
 	return {
 		signInFormData,
 		loading,
-		error,
+		error: error?.message,
 		message,
 		handleChange,
 		handleSubmit,
