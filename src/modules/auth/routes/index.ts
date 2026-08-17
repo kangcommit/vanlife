@@ -1,2 +1,2 @@
 export { authRoutePaths } from "./routePaths";
-export { authRoutes } from "./routes";
+export { authGuestRoutes, authProtectedRoutes } from "./routes";
