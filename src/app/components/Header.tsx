@@ -1,20 +1,14 @@
 import { RxAvatar } from "react-icons/rx";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
+import { useAuth } from "@/modules/auth/context/AuthProvider";
 import { authRoutePaths } from "@/modules/auth/routes";
-import { signOutUser } from "@/modules/auth/services/authService";
-import { isSignedIn, signOut } from "@/modules/auth/utils/session";
 import { Nav } from "@/shared/components/Nav";
-import { headerNavigation } from "../routes/navigation";
+import { getHeaderNavigation } from "../routes/navigation";
 import { paths } from "../routes/paths";
 
 export default function Header() {
-	const navigate = useNavigate();
-
-	async function handleSignOut() {
-		await signOutUser();
-		signOut();
-		navigate(paths.home, { replace: true });
-	}
+	const { user } = useAuth();
+	const headerNavigation = getHeaderNavigation(user?.role);
 
 	return (
 		<header className="border-line border-b bg-canvas/95">
@@ -31,15 +25,7 @@ export default function Header() {
 						ariaLabel="Primary navigation"
 						className="flex-wrap gap-x-5 gap-y-2 sm:gap-6"
 					/>
-					{isSignedIn() ? (
-						<button
-							type="button"
-							onClick={handleSignOut}
-							className="font-semibold text-clay text-sm transition-colors hover:text-clay-dark active:scale-95"
-						>
-							Sign out
-						</button>
-					) : (
+					{user ? null : (
 						<Link
 							to={authRoutePaths.signIn}
 							aria-label="Sign in"
